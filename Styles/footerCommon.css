@@ -1,0 +1,40 @@
+.footer{
+    background-color: #bbcf0381;
+    text-align: center;
+}
+
+.footer__contact__form{
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer__contact__form__Information{
+    font-size: 2rem;
+}
+
+.footer__contact__form__name,.footer__contact__form__message{
+    width: 30%;
+    align-self: center;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.footer__contact__form__message{
+    height: 100px;
+}
+
+.footer__contact__form__button{
+    background-color: blue;
+    width: 30%;
+    align-self: center;
+    color: white;
+    padding: 1rem 0rem 1rem 0rem;
+    margin: 1rem 0rem 1rem 0rem;
+}
+
+.footer__contact__form__button:hover{
+    cursor: pointer;
+    text-decoration: underline;
+    color: red;
+}
