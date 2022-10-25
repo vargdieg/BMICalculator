@@ -1,8 +1,8 @@
 export function loadUserData(id){
-    let userData = JSON.parse(localStorage.getItem("data")) || [];
+    let userData = JSON.parse(localStorage.getItem("data"+id)) || [];
     return userData
 }
 
 export function saveData(userNewData,id){
-    localStorage.setItem("data",JSON.stringify(userNewData));
+    localStorage.setItem("data"+id,JSON.stringify(userNewData));
 }
