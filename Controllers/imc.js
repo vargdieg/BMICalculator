@@ -56,7 +56,7 @@ button.addEventListener("click",() =>{
             weight: weight,
             height: height,
             date: date,
-            imc: imc,
+            bmi: imc,
             id: uuid.v4()
         }
         let datos = loadUserData(idUser);
