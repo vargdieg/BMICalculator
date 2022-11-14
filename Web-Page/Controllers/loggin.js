@@ -1,4 +1,4 @@
-import {validateLoggin} from "../Services/validateLoggin.js"
+import {validateLoggin} from "../Services/ManageUsers.js"
 import {saveSession,getCurrentSession} from "../Services/manageSessions.js"
 import { redirectHome,redirectRegister} from "./navigation.js";
 import {addOpinion} from "./saveOpinion.js";
@@ -23,18 +23,17 @@ saveOpinion.addEventListener("click",()=>{
 
 const Session = getCurrentSession();
 if(Session != null){
-    window.location.href = "../Screens/imc.html?id="+Session;
+    window.location.href = "../imc.html?id="+Session;
 }
 
 button.addEventListener("click",() => {
     const [username,password] = readEntries();
-    const [validate,identifier] = validateLoggin(username,password);
-    if(validate){
-        saveSession(identifier);
-        window.location.href = "../Screens/imc.html?id="+identifier;
-    }else{
-        alert("Usuario o contraseña incorrectos");
-    }
+    validateLoggin(username,password).then((user) => {
+        saveSession(user.identifier);
+        window.location.href = "../imc.html?id="+user.identifier;
+    }).catch((error) => {
+        alert(error);
+    });
 });
 
 function readEntries(){

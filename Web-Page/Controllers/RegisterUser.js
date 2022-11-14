@@ -1,8 +1,8 @@
-import {saveUser,LoadUsers} from "../Services/saveNewUsers.js";
+import {saveUser} from "../Services/ManageUsers.js";
 import { redirectHome,redirectRegister} from "./navigation.js";
 import {addOpinion} from "./saveOpinion.js";
 
-const button = document.querySelector("[data-submit]");
+const registerUser = document.querySelector("[data-submit]");
 
 const redirectHomebutton = document.querySelector("[data-home]");
 const redirectRegisterbutton = document.querySelector("[data-register]");
@@ -20,22 +20,25 @@ saveOpinion.addEventListener("click",()=>{
     addOpinion();
 });
 
-button.addEventListener("click",() => {
+registerUser.addEventListener("click",() => {
     const fields = readInputs();
-    const [validate,message] = validateInputs(fields);
-    if(validate){
+    const [validation,message] = validateInputs(fields);
+    if(validation){
         const User = {
             username: fields[0].value,
             password: fields[1].value,
             email: fields[3].value,
             identifier: uuid.v4()
         }
-        saveUser(User);
-        clearInputs();
-        console.log("El usuario "+User.username+" Fue registrado");
+        saveUser(User).then(() => {
+            alert("User "+User.username+" registered");
+            clearInputs();
+        }).catch(() =>{
+            alert("Could not save the user");
+            clearInputs();
+        });
     }else{
-        alert("Los datos no estan bien mapeados");
-        console.log(message);
+        alert(message);
         clearInputs();
     }
 });
@@ -46,37 +49,24 @@ function readInputs(){
     fields.push(document.querySelector("[data-password]"));
     fields.push(document.querySelector("[data-validatepassword]"));
     fields.push(document.querySelector("[data-email]"));
-
     return fields;
 }
 
 function clearInputs(){
-
     document.querySelector("[data-username]").value = "";
     document.querySelector("[data-password]").value = "";
     document.querySelector("[data-validatepassword]").value = "";
     document.querySelector("[data-email]").value = "";
 }
 
-function validateInputs(fieldstoValidate){
+function validateInputs (fieldstoValidate) {
     let validation = true;
     let message = "";
     fieldstoValidate.forEach(field => {
         if(!field.validity.valid){
+            message = "Field "+field.id+" Not correctly mapped";
             validation = false;
-            message = "Campo "+field.id+" No esta mapeado correctamente";
-        }  
-    })
-    let users = LoadUsers();
-    users.forEach(user => {
-        if(user.email == fieldstoValidate[3].value){
-            validation = false;
-            message = "Email ya registrado";
         }
     })
-    if(fieldstoValidate[1].value != fieldstoValidate[2].value){
-        validation = false;
-        message = "Las contraseñas no coinciden";
-    }
-    return [validation,message];
+    return [validation,message];  
 }
