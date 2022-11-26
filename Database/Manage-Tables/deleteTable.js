@@ -66,8 +66,8 @@ function handlingError(error){
     return response;
   }
   let response = {
-    "name": 'Error desconocido',
-    "message": 'Ocurrio un error inesperado al momento de realizar la peticion',
+    "name": 'Unknown error',
+    "message": 'unknown error at the moment of making the request',
     "error":{
       "errorCode": '500'
     }
