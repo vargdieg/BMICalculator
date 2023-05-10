@@ -1,4 +1,4 @@
-import {loadUserData,saveData} from "../Services/ManageUserData.js"
+import {loadUserData,saveData} from "../Services/ManageUsers/ManageUserData.js"
 import {displayPage} from "./displayImcPage.js";
 
 const params = new URLSearchParams(window.location.search);

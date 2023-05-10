@@ -1,6 +1,6 @@
-import {validateLoggin} from "../Services/ManageUsers.js"
-import {saveSession,getCurrentSession} from "../Services/manageSessions.js"
-import { redirectHome,redirectRegister} from "./navigation.js";
+import {validateLoggin} from "../Services/ManageUsers/ManageUsers.js"
+import {saveSession,getCurrentSession} from "../Services/ManageUsers/manageSessions.js"
+import { redirectHome,redirectRegister,bmi} from "./navigation.js";
 import {addOpinion} from "./saveOpinion.js";
 
 const redirectHomebutton = document.querySelector("[data-home]");
@@ -30,7 +30,7 @@ button.addEventListener("click",() => {
     const [username,password] = readEntries();
     validateLoggin(username,password).then((user) => {
         saveSession(user.identifier);
-        window.location.href = "../imc.html?id="+user.identifier;
+        bmi(user.identifier);
     }).catch((error) => {
         alert(error);
     });

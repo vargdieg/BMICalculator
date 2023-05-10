@@ -1,4 +1,4 @@
-import {saveUser} from "../Services/ManageUsers.js";
+import {saveUser} from "../Services/ManageUsers/ManageUsers.js";
 import { redirectHome,redirectRegister} from "./navigation.js";
 import {addOpinion} from "./saveOpinion.js";
 

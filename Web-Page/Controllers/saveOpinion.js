@@ -1,4 +1,4 @@
-import {uploadOpinion} from "../Services/manageOpinion.js"
+import {uploadOpinion} from "../Services/ManageOpinion/manageOpinion.js"
 
 export function addOpinion(){
     const opinionName = document.querySelector("[data-opinionname]");

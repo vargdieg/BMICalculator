@@ -1,11 +1,9 @@
-import {loadUserData,saveData} from "../Services/ManageUserData.js"
-import { closeSession } from "./navigation.js";
+import {loadUserData,saveData,deleteUser} from "../Services/ManageUsers/ManageUserData.js"
+import { closeSession, redirectHome, appointment, sleep} from "./navigation.js";
 import {addOpinion} from "./saveOpinion.js";
 import {displayPage} from "./displayImcPage.js";
-import {deleteUser} from "../Services/ManageUsers.js";
-import {redirectHome} from "./navigation.js"
-import {logOffCurrentSession} from "../Services/manageSessions.js"
-
+import {logOffCurrentSession} from "../Services/ManageUsers/manageSessions.js"
+import {imcData} from "./classes/imcData.js"
 
 const params = new URLSearchParams(window.location.search);
 const idUser = params.get("id");
@@ -14,8 +12,10 @@ const addEntrie = document.querySelector("[data-button]");
 const closeSessionButton = document.querySelector("[data-session]");
 const deleteUserB = document.querySelector("[data-delete]");
 const saveOpinion = document.querySelector("[data-opinion]");
+const sleepHourButton = document.querySelector("[data-sleep]");
+const medicalAppointmentButton = document.querySelector("[data-appointments]");
 
-displayPage();
+// displayPage();
 
 closeSessionButton.addEventListener("click",()=>{
     closeSession();
@@ -25,6 +25,14 @@ saveOpinion.addEventListener("click",()=>{
     addOpinion();
 });
 
+sleepHourButton.addEventListener("click",()=>{
+    sleep();
+})
+
+medicalAppointmentButton.addEventListener("click",()=>{
+    appointment();
+})
+
 addEntrie.addEventListener("click",() =>{
     const [condition,weight,height,waist,date] = validateEntries();
     if(!condition){
@@ -32,14 +40,15 @@ addEntrie.addEventListener("click",() =>{
     }else{
         loadUserData(idUser).then((loadData)=>{
             const imc = imcCalculator(height,weight).toFixed(2);
-            const data = {
-                weight: weight,
-                height: height,
-                date: date,
-                bmi: imc,
-                id: uuid.v4(),
-                waist: waist
-            }
+            const data = new imcData(weight,height,date,imc,uuid.v4(),waist);
+            // const data = {
+            //     weight: weight,
+            //     height: height,
+            //     date: date,
+            //     bmi: imc,
+            //     id: uuid.v4(),
+            //     waist: waist
+            // }
             loadData.push(data);
             loadData = ordenarDatos(loadData);
             saveData(loadData,idUser).then(()=>{

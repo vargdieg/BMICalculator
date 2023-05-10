@@ -2,21 +2,22 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./Styles/_reset.css">
-    <title>IMC document</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="./Styles/imc.css">
     <link rel="stylesheet" href="./Styles/headerCommon.css">
     <link rel="stylesheet" href="./Styles/footerCommon.css">
+    <link rel="stylesheet" href="./Styles/cardlist.css">
 
+    <title>appointments</title>
 </head>
 <body>
     <header class="header">
@@ -32,34 +33,11 @@
         </ul>
     </header>
     <main class="body">
-        <ul class="body__addentry">
-            <li class="body__addentry__element">
-                <label class="body__addentry__element__label" for="weight">weight (kg)</label>
-                <input class="body__addentry__element__input" id="weight" type="number" required pattern="[0-8][0-9][0-9]" placeholder="###" data-weight>
-            </li>
-            <li class="body__addentry__element">
-                <label class="body__addentry__element__label" for="Height">height (cm)</label>
-                <input class="body__addentry__element__input" id="Height" type="number" required pattern="[0-4][0-9][0-9]" placeholder="###" data-height>
-            </li>
-            <li class="body__addentry__element">
-                <label class="body__addentry__element__label" for="waist">waist (cm)</label>
-                <input class="body__addentry__element__input" id="waist" type="number" required pattern="[0-4][0-9][0-9]" placeholder="###" data-waist>
-            </li>
-            <li class="body__addentry__element">
-                <label class="body__addentry__element__label" for="dateOfEntry">date of entry</label>
-                <input class="body__addentry__element__input" id="dateOfEntry" type="date" required data-date>
-            </li>
-            <li class="body__addentry__element">
-                <button class="body__addentry__button" type="submit" data-button>Add</button>
-            </li>
+        <div id="Modal"></div>
+        <div id="SaveModal" class="modal">
+        </div>
+        <ul id="appointment-list" class="body__appointmentCardList">
         </ul>
-        <section class="body__table">
-            <table class="body__table_content" data-table>
-            </table>
-        </section>
-        <section class="body__histogram" data-histogram>
-            <!-- <canvas id="myChart" style="width:100%;max-width:600px"></canvas> -->
-        </section>
     </main>
     <footer class="footer">
         <section class="footer__contact__form">
@@ -73,10 +51,8 @@
             <p class="footer_message__copyright">&copy Copyright 2022</p>
         </section>
     </footer>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+</body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js" integrity="sha512-UNM1njAgOFUa74Z0bADwAq8gbTcqZC8Ej4xPSzpnh0l6KMevwvkBvbldF9uR++qKeJ+MOZHRjV1HZjoRvjDfNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="./Controllers/imc.js" type="module"></script>
-</body>
+    <script src="./Controllers/manage-appointments/appointment-index.js" type="module"></script>
 </html>

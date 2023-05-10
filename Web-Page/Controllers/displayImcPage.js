@@ -1,7 +1,7 @@
 import { createtable } from "./createTable.js";
 import {createHistogram} from "./histogram.js";
-import {loadUserData} from "../Services/ManageUserData.js"
-import {getUserName} from "../Services/ManageUsers.js"
+import {loadUserData} from "../Services/ManageUsers/ManageUserData.js"
+import {getUserName} from "../Services/ManageUsers/ManageUsers.js"
 
 const params = new URLSearchParams(window.location.search);
 const idUser = params.get("id");
