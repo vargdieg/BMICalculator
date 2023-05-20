@@ -50,8 +50,8 @@ registerUser.addEventListener("click",() => {
         saveUser(newUser).then(() => {
             showModalCommon("User "+newUser.username+" registered");
             clearInputs();
-        }).catch(() =>{
-            showModalCommon("An error has ocurred, the user could not be registered");
+        }).catch((error) =>{
+            showModalCommon(error);
             clearInputs();
         });
     }else{

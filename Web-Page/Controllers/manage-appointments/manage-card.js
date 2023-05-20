@@ -3,14 +3,15 @@ import {DisplayAppointments} from './appointment-index.js';
 import { showModal,hideModal } from './manage-modal.js';
 import {appointmentCard} from '../classes/appointmentCard.js'
 import { showModalCommon } from '../manage-modal/manage-commonmodal.js';
-const userid = params.get("id");;
+const params = new URLSearchParams(window.location.search);
+const userid = params.get("id");
 
 export function deleteNote(id){
-    let userAppointments = loadUserAppointmets(userid).then(()=>{
+    loadUserAppointmets(userid).then((userAppointments)=>{
         let index = findNote(userAppointments,id);
         if(index != -1){
             userAppointments.splice(index, 1);
-            saveUserAppointments(ordenarDatos(userAppointments),userid);
+            saveUserAppointments(OrderData(userAppointments),userid).catch((error)=>{showModalCommon(error)});
             DisplayAppointments();
         }
     }).catch((error)=>{
@@ -19,7 +20,7 @@ export function deleteNote(id){
 }
 
 export function editNote(id){
-    let userAppointments = loadUserAppointmets(userid).then(()=>{
+    loadUserAppointmets(userid).then((userAppointments)=>{
         let index = findNote(userAppointments,id)
         if(index != -1){
             showModal(id,userAppointments[index].profession,userAppointments[index].status,createDate(userAppointments[index]),userAppointments[index].direction,userAppointments[index].description);
@@ -41,7 +42,7 @@ export function editNote(id){
 
                 userAppointments.splice(index,1);
                 userAppointments.push(newAppointment);
-                saveUserAppointments(ordenarDatos(userAppointments),userid);
+                saveUserAppointments(OrderData(userAppointments),userid).catch((error)=>{showModalCommon(error)});
                 hideModal();
                 DisplayAppointments();
             });
@@ -66,7 +67,7 @@ export function addNote(){
 
     saveButton.addEventListener('click',()=>{
         
-        let userAppoint = loadUserAppointmets(userid).then(()=>{
+        loadUserAppointmets(userid).then((userAppoint)=>{
             let profession = document.querySelector('[data-inputProfession]').value;
             let status = document.querySelector('[data-inputStatus]').value;
             let dateTime = document.querySelector('[data-inputDate]').value;
@@ -76,7 +77,7 @@ export function addNote(){
             let newAppointment = new appointmentCard(profession,date,time,status,direction,description)
 
             userAppoint.push(newAppointment);
-            saveUserAppointments(ordenarDatos(userAppoint),userid);
+            saveUserAppointments(OrderData(userAppoint),userid).catch((error)=>{showModalCommon(error)});
 
             hideModal();
             DisplayAppointments();
@@ -98,7 +99,7 @@ function findNote(appointments,id){
     return indexNote;
 }
 
-function ordenarDatos(appointment){
+function OrderData(appointment){
     appointment.sort(function(a,b){
         const firstDate = moment(a.date, 'YYYY-MM-DD');
         const secondDate = moment(b.date, 'YYYY-MM-DD');

@@ -1,21 +1,23 @@
-import {loadUserData,saveData,deleteUser} from "../../Services/ManageUsers/ManageUserData.js";
-import { closeSession, redirectHome, appointment, sleep} from "../navigation.js";
+import {loadUserData,saveData} from "../../Services/ManageUsers/ManageUserData.js";
+import { closeSession, redirectHome, appointment,bmi,sleep} from "../navigation.js";
 import {addOpinion} from "../manage-opinion/saveOpinion.js";
 import {displayPage} from "./displayImcPage.js";
 import {logOffCurrentSession} from "../../Services/ManageUsers/manageSessions.js";
 import {bmiData} from "../classes/bmiData.js";
 import {showModalCommon} from "../manage-modal/manage-commonmodal.js";
 import {validateInputs} from "../validateInputForm/validateInputForm.js";
+import {deleteUser} from "../../Services/ManageUsers/ManageUsers.js"
 
 const params = new URLSearchParams(window.location.search);
 const idUser = params.get("id");
 
 const addEntrie = document.querySelector("[data-button]");
+const bmiredirectB = document.querySelector("[data-bmi]");
+const medicalAppointmentButton = document.querySelector("[data-appointments]");
 const closeSessionButton = document.querySelector("[data-session]");
 const deleteUserB = document.querySelector("[data-delete]");
 const saveOpinion = document.querySelector("[data-opinion]");
-const sleepHourButton = document.querySelector("[data-sleep]");
-const medicalAppointmentButton = document.querySelector("[data-appointments]");
+// const sleepHourButton = document.querySelector("[data-sleep]");
 
 displayPage();
 
@@ -27,12 +29,16 @@ saveOpinion.addEventListener("click",()=>{
     addOpinion();
 });
 
-sleepHourButton.addEventListener("click",()=>{
-    sleep();
-})
+bmiredirectB.addEventListener("click",()=>{
+    bmi(idUser);
+});
+
+// sleepHourButton.addEventListener("click",()=>{
+//     sleep();
+// })
 
 medicalAppointmentButton.addEventListener("click",()=>{
-    appointment();
+    appointment(idUser);
 })
 
 addEntrie.addEventListener("click",() =>{
@@ -46,8 +52,8 @@ addEntrie.addEventListener("click",() =>{
         showModalCommon(reason);
     }else{
         loadUserData(idUser).then((loadData)=>{
-            const bmi = bmiCalculator(height,weight).toFixed(2);
-            const data = new bmiData(weight,height,dateTime,bmi,uuid.v4(),waist);
+            const bmi = bmiCalculator(height.value,weight.value).toFixed(2);
+            const data = new bmiData(weight.value,height.value,dateTime,bmi,uuid.v4(),waist.value);
             loadData.push(data);
             loadData = orderData(loadData);
             saveData(loadData,idUser).then(()=>{

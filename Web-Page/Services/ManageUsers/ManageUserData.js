@@ -4,11 +4,11 @@
 export function loadUserData(id){
     return new Promise((resolve,reject)=>{
         try{
-            let appointments = localStorage.getItem('appointment'+id);
-            if(appointments == null){
-                return [];
+            let bmiData = localStorage.getItem('bmiData'+id);
+            if(bmiData == null){
+                resolve ([]);
             }
-            resolve(JSON.parse(appointments));
+            resolve(JSON.parse(bmiData));
         }catch{
             reject("An error ocurred while loading the user data")
         }

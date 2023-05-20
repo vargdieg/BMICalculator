@@ -15,10 +15,24 @@ export function saveUser(userInfo){
 }
 
 export function deleteUser(userid){
-    return new Promise((resolve,reject)=>{
+    return new Promise(async (resolve,reject)=>{
         try{
+            let index = -1;
             localStorage.removeItem('User'+userid);
-            resolve("User deleted");
+            let ids = await loadId();
+            for(let i = 0;i<ids.length;i++){
+                if(ids[i] == userid){
+                    index = i;
+                    break;
+                }
+            }
+            if(index != -1){
+                ids.splice(index,1);
+                localStorage.setItem('UsersIds',JSON.stringify(ids));
+                resolve("User deleted");
+            }else{
+                reject("The id of the user was not found");
+            }
         }catch{
             reject("An error ocurred while deleting the user");
         }
@@ -29,11 +43,10 @@ export function getUserName(userid){
     return new Promise((resolve,reject)=>{
         try{
             let User = localStorage.getItem('User'+userid);
-            console.log(User);
             if(User == null){
                 resolve([]);
             }
-            resolve(JSON.parse(UserName));
+            resolve(JSON.parse(User));
         }catch{
             reject("An error ocurred while extracting user data")
         }
@@ -41,28 +54,15 @@ export function getUserName(userid){
 }
 
 export function validateLoggin(username,password){
-    return new Promise((resolve,reject) =>{
+    return new Promise(async (resolve,reject) =>{
         try{
-            let userValidation = false;
-            let userData = "";
-            console.log(username);
-            console.log(password);
-            loadId().then((ids)=>{
-                console.log(ids);
-                for(let i = 0;i<ids.length;i++){
-                getUserName(ids[i]).then((userRetrieved)=>{
-                if(userRetrieved.username == username && userRetrieved.password == password){
-                    userValidation = true;
-                    userData = userRetrieved;
+            let ids = await loadId();
+            for(let i = 0;i<ids.length;i++){
+                let user = await getUserName(ids[i]);
+                if(user.username == username && user.password == password){
+                    resolve(user);
                 }
-                })
-                }
-            if(userValidation){
-                resolve(userData);
-            }else{
-                reject("Incorrect username or password")
             }
-            });
         }catch{
             reject("An error ocurred while validating loggin");
         }
@@ -70,9 +70,11 @@ export function validateLoggin(username,password){
 }
 
 function saveId(idToSave){
-    let Userids = loadId();
-    Userids.push(idToSave);
-    localStorage.setItem('UsersIds',JSON.stringify(Userids));
+    loadId().then((Userids)=>{
+        Userids.push(idToSave);
+        localStorage.setItem('UsersIds',JSON.stringify(Userids));
+    }).catch({
+    });
 }
 
 function loadId(){
