@@ -13,7 +13,7 @@ const editIcon = (id) => {
     const i = document.createElement('i');
     i.classList.add('fa', 'fa-pencil','fa-lg');
     i.style.color = "rgba(175, 175, 3, 0.788)";
-    i.addEventListener('click', () => editNote(id));
+    i.addEventListener('click', (event) => editNote(event,id));
     return i;
 }
 

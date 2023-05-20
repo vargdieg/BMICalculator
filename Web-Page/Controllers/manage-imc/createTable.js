@@ -1,5 +1,6 @@
-import {loadUserData,saveData} from "../../Services/ManageUsers/ManageUserData.js"
+import {deleteDataEntry} from "../../Services/userbmidata/ManageUserData.js";
 import {displayPage} from "./displayImcPage.js";
+import { showModalCommon } from "../manage-modal/manage-commonmodal.js";
 
 const params = new URLSearchParams(window.location.search);
 const idUser = params.get("id");
@@ -12,13 +13,10 @@ const deleteIcon = (id) => {
 };
 
 const deleteTask = (id) => {
-    loadUserData(idUser).then((loadData)=>{
-        let datos = loadData;
-        const index = datos.findIndex((item) => item.id === id);
-        datos.splice(index, 1);
-        saveData(datos,idUser).then(()=>{
-            displayPage();
-        });
+    deleteDataEntry(idUser,id).then(()=>{
+        displayPage();
+    }).catch((error)=>{
+        showModalCommon(error);
     });    
 };
 

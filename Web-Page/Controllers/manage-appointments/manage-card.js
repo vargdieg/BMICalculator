@@ -1,58 +1,73 @@
-import {loadUserAppointmets,saveUserAppointments} from '../../Services/appointmentCard/ManageAppointments.js';
+import {saveUserAppointments,deleteAppointment,editAppointment} from '../../Services/appointmentCard/ManageAppointments.js';
 import {DisplayAppointments} from './appointment-index.js';
 import { showModal,hideModal } from './manage-modal.js';
 import {appointmentCard} from '../classes/appointmentCard.js'
 import { showModalCommon } from '../manage-modal/manage-commonmodal.js';
+import {validateInputs,validateInputEnum} from "../validateInputForm/validateInputForm.js";
+import {appointmentsStatus,professionals} from "../const/appointmentsConsts.js";
+import {professionals,appointmentsStatus} from "../consts/appointmentsConsts.js"
+
 const params = new URLSearchParams(window.location.search);
 const userid = params.get("id");
 
 export function deleteNote(id){
-    loadUserAppointmets(userid).then((userAppointments)=>{
-        let index = findNote(userAppointments,id);
-        if(index != -1){
-            userAppointments.splice(index, 1);
-            saveUserAppointments(OrderData(userAppointments),userid).catch((error)=>{showModalCommon(error)});
-            DisplayAppointments();
-        }
+    deleteAppointment(userid,id).then(()=>{
+        DisplayAppointments();
     }).catch((error)=>{
         showModalCommon(error);
-    });
+    })
 }
 
-export function editNote(id){
-    loadUserAppointmets(userid).then((userAppointments)=>{
-        let index = findNote(userAppointments,id)
-        if(index != -1){
-            showModal(id,userAppointments[index].profession,userAppointments[index].status,createDate(userAppointments[index]),userAppointments[index].direction,userAppointments[index].description);
-            let saveButton = document.querySelector('[data-modalSave]');
-            let EscButton = document.querySelector('[data-modalEsc]');
+export function editNote(event,id){
+    let profession = event.target.parentElement.childNodes[2].innerHTML;
+    let date = event.target.parentElement.childNodes[3].innerHTML;
+    let time = event.target.parentElement.childNodes[4].innerHTML;
+    let status = event.target.parentElement.childNodes[5].innerHTML;
+    let direction = event.target.parentElement.childNodes[6].innerHTML;
+    let description = event.target.parentElement.childNodes[7].innerHTML;
+
+    let Time = moment(time,'h:mm a').format('HH:mm');
+
+    showModal(id,profession,status,date+'T'+Time,direction,description);
+    let saveButton = document.querySelector('[data-modalSave]');
+    let EscButton = document.querySelector('[data-modalEsc]');
+
             EscButton.addEventListener('click',()=>{
                 hideModal();
             });
 
             saveButton.addEventListener('click',()=>{
+                let profession = document.querySelector('[data-inputProfession]');
+                let status = document.querySelector('[data-inputStatus]');
+                let dateTime = document.querySelector('[data-inputDate]');
+                let direction = document.querySelector('[data-inputDirection]');
+                let description = document.querySelector('[data-inputDescription]');
+                const [validate,reason] = validateInputs([profession,dateTime,status],["Profession","date-time","status"]);
+                const [validateEnum,reasonEnum] = validateInputEnum([profession,status],["Profession","status"],[professionals,appointmentsStatus]);
+                if(!validate || !validateEnum){
+                    if(!validate){
+                        hideModal();
+                        showModalCommon(reason);
+                    }else{
+                        hideModal();
+                        showModalCommon(reasonEnum);
+                    }
+                }else{
 
-                let profession = document.querySelector('[data-inputProfession]').value;
-                let status = document.querySelector('[data-inputStatus]').value;
-                let dateTime = document.querySelector('[data-inputDate]').value;
-                let direction = document.querySelector('[data-inputDirection]').innerHTML;
-                let description = document.querySelector('[data-inputDescription]').innerHTML;
-                let [date,time] = dateTime.split('T');
-                let newAppointment = new appointmentCard(profession,date,time,status,direction,description)
+                    let [date,time] = dateTime.value.split('T');
+                    let newAppointment = new appointmentCard(profession.value,date,time,status.value,direction.innerHTML,description.innerHTML);
+                    newAppointment.identifier = id;
 
-                userAppointments.splice(index,1);
-                userAppointments.push(newAppointment);
-                saveUserAppointments(OrderData(userAppointments),userid).catch((error)=>{showModalCommon(error)});
-                hideModal();
-                DisplayAppointments();
+                    editAppointment(userid,newAppointment).then(()=>{
+                        hideModal();
+                        DisplayAppointments();
+                    }).catch((error)=>{
+                        hideModal();
+                        showModalCommon(error);
+                    });
+                    
+                }
             });
-
-        }else{
-            showModalCommon("Error with the user id")
-        }
-    }).catch((error)=>{
-        showModalCommon(error);
-    });
 }
 
 export function addNote(){
@@ -67,50 +82,34 @@ export function addNote(){
 
     saveButton.addEventListener('click',()=>{
         
-        loadUserAppointmets(userid).then((userAppoint)=>{
-            let profession = document.querySelector('[data-inputProfession]').value;
-            let status = document.querySelector('[data-inputStatus]').value;
-            let dateTime = document.querySelector('[data-inputDate]').value;
-            let direction = document.querySelector('[data-inputDirection]').innerHTML;
-            let description = document.querySelector('[data-inputDescription]').innerHTML;
-            let [date,time] = dateTime.split('T');
-            let newAppointment = new appointmentCard(profession,date,time,status,direction,description)
+        let profession = document.querySelector('[data-inputProfession]');
+        let status = document.querySelector('[data-inputStatus]');
+        let dateTime = document.querySelector('[data-inputDate]');
+        let direction = document.querySelector('[data-inputDirection]');
+        let description = document.querySelector('[data-inputDescription]');
 
-            userAppoint.push(newAppointment);
-            saveUserAppointments(OrderData(userAppoint),userid).catch((error)=>{showModalCommon(error)});
-
-            hideModal();
-            DisplayAppointments();
-        }).catch((error)=>{
-            showModalCommon(error);
-        });
+        const [validate,reason] = validateInputs([profession,dateTime,status],["Profession","date-time","status"]);
+        const [validateEnum,reasonEnum] = validateInputEnum([profession,status],["Profession","status"],[professionals,appointmentsStatus]);
         
+        if(!validate || !validateEnum){
+            if(!validate){
+                hideModal();
+                showModalCommon(reason);
+            }else{
+                hideModal();
+                showModalCommon(reasonEnum);
+            }
+            }else{
+                let [date,time] = dateTime.value.split('T');
+                let newAppointment = new appointmentCard(profession.value,date,time,status.value,direction.innerHTML,description.innerHTML);
+                saveUserAppointments(newAppointment,userid).then(()=>{
+                    hideModal();
+                    DisplayAppointments();
+                }).catch((error)=>{
+                    hideModal();
+                    showModalCommon(error);
+                });
+            }                
     });
 
-}
-
-function findNote(appointments,id){
-    let indexNote = -1;
-    appointments.forEach((appointment,index) => {
-        if(appointment.identifier == id){
-            indexNote = index;
-        }
-    });
-    return indexNote;
-}
-
-function OrderData(appointment){
-    appointment.sort(function(a,b){
-        const firstDate = moment(a.date, 'YYYY-MM-DD');
-        const secondDate = moment(b.date, 'YYYY-MM-DD');
-        const firstHour = moment(a.time,'hh:mm');
-        const SecondHour = moment(b.time,'hh:mm');
-        return a.status.localeCompare(b.status) || firstDate - secondDate || firstHour - SecondHour ||
-        a.profession.localeCompare(b.profession);
-      });
-    return appointment;
-}
-
-function createDate(appointment){
-    return appointment.date+'T'+appointment.time;
 }

@@ -1,3 +1,5 @@
+import {professionals,appointmentsStatus} from "../consts/appointmentsConsts.js"
+
 export function showModal(id,profession = "",status = "", iDate = "",direction="Direction",description = "Description"){
     let modalElement = document.getElementById("Modal");
     modalElement.innerHTML = createModal(id,profession,status,iDate,description);
@@ -23,33 +25,26 @@ function createModal(id="CreateModal"){
                     <i class="fa fa-save fa-lg" style="color:black" data-modalSave></i>
                     <div class="appointmentCardList__element__header">
                         <label for="professionselection">Profession:</label>
-                        <select name="profession" id="professionselection" data-inputProfession>
-                            <option value="alergologia">alergologia</option>
-                            <option value="cirugia_Maxilofacial">cirugia_Maxilofacial</option>
-                            <option value="general">general</option>
-                            <option value="medicina_Interna">medicina Interna</option>
-                            <option value="otorrino">otorrino</option>
-                            <option value="odontologia">odontologia</option>
-                            <option value="neurologia">neurologia</option>
-                            <option value="medicina_Deportiva">medicina Deportiva</option>
-                            <option value="nutricion">nutricion</option>
-                            <option value="endocrinologia">endocrinologia</option>
-                            <option value="optometria">optometria</option>
+                        <select name="profession" id="professionselection" required data-inputProfession>
+                            ${professionals.map(element => createOptionValue(element))}
                         </select>
                     </div>
                     <div class="appointmentCardList__element__header">
                         <label for="statusselection">Status:</label>
-                        <select name="status" id="statusselection" data-inputStatus>
-                            <option value="agendada">Agendada</option>
-                            <option value="por_agendar">Por Agendar</option>
+                        <select name="status" id="statusselection" required data-inputStatus>
+                            ${appointmentsStatus.map(element => createOptionValue(element))}
                         </select>
                     </div>
                     <div class="appointmentCardList__element__header">
                         <label for="dateOfEntry">date</label>
-                        <input class="body__addentry__element__input" id="dateOfEntry" type="datetime-local" min="2018-06-07T00:00" max="2052-06-14T00:00" data-inputDate>
+                        <input class="body__addentry__element__input" id="dateOfEntry" type="datetime-local" min="2018-06-07T00:00" max="2052-06-14T00:00" required data-inputDate>
                     </div>
                     <p class="appointmentCardList__element__description" contenteditable="true" data-inputDirection></p>
                     <p class="appointmentCardList__element__description" contenteditable="true" data-inputDescription></p>
                 </div>
             </div>`   
+}
+
+function createOptionValue(value){
+    return `<option value="${value}">${value}</option>`
 }

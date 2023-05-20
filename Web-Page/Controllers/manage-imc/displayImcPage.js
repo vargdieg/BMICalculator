@@ -1,6 +1,6 @@
 import { createtable } from "./createTable.js";
 import {createHistogram} from "./histogram.js";
-import {loadUserData} from "../../Services/ManageUsers/ManageUserData.js";
+import {loadUserData} from "../../Services/userbmidata/ManageUserData.js";
 import {getUserName} from "../../Services/ManageUsers/ManageUsers.js";
 import { showModalCommon } from "../manage-modal/manage-commonmodal.js";
 
@@ -28,7 +28,7 @@ function CleanScreen(){
     })
 }
 
-function ResetEntries(){
+export function ResetEntries(){
     document.querySelector("[data-weight]").value = "";
     document.querySelector("[data-height]").value = "";
     document.querySelector("[data-waist]").value = "";

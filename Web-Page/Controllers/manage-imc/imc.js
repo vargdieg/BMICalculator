@@ -1,4 +1,4 @@
-import {loadUserData,saveData} from "../../Services/ManageUsers/ManageUserData.js";
+import {saveData} from "../../Services/userbmidata/ManageUserData.js";
 import { closeSession, redirectHome, appointment,bmi,sleep} from "../navigation.js";
 import {addOpinion} from "../manage-opinion/saveOpinion.js";
 import {displayPage} from "./displayImcPage.js";
@@ -7,6 +7,7 @@ import {bmiData} from "../classes/bmiData.js";
 import {showModalCommon} from "../manage-modal/manage-commonmodal.js";
 import {validateInputs} from "../validateInputForm/validateInputForm.js";
 import {deleteUser} from "../../Services/ManageUsers/ManageUsers.js"
+import { ResetEntries } from "./displayImcPage.js";
 
 const params = new URLSearchParams(window.location.search);
 const idUser = params.get("id");
@@ -49,32 +50,19 @@ addEntrie.addEventListener("click",() =>{
     const [validate,reason] = validateInputs([weight,height,waist,date],["weight","height","waist","date"]);
     const dateTime = moment(date.value).format('DD/MM/YYYY');
     if(!validate){
+        ResetEntries();
         showModalCommon(reason);
     }else{
-        loadUserData(idUser).then((loadData)=>{
-            const bmi = bmiCalculator(height.value,weight.value).toFixed(2);
-            const data = new bmiData(weight.value,height.value,dateTime,bmi,uuid.v4(),waist.value);
-            loadData.push(data);
-            loadData = orderData(loadData);
-            saveData(loadData,idUser).then(()=>{
-                displayPage();
-            }).catch((error)=>{
-                showModalCommon(error);
-            });
+        const bmi = bmiCalculator(height.value,weight.value).toFixed(2);
+        const data = new bmiData(weight.value,height.value,dateTime,bmi,uuid.v4(),waist.value);
+        saveData(data,idUser).then(()=>{
+            displayPage();
         }).catch((error)=>{
+            ResetEntries();
             showModalCommon(error);
         });
     }
 });
-
-function orderData(datos){
-    datos.sort(function(a,b){
-        const firstDate = moment(a.date, 'DD/MM/YYYY');
-        const secondDate = moment(b.date, 'DD/MM/YYYY');
-        return firstDate - secondDate;
-      });
-    return datos;
-}
 
 function bmiCalculator(height,weight){
     let bmi = (100*100*weight)/(height*height);

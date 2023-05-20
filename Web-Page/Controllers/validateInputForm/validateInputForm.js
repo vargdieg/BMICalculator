@@ -61,3 +61,17 @@ function validateInput(input){
     }
     return [true,""];
 }
+
+export function validateInputEnum(valueToSearch , fieldNames, possibleEntries){
+    let NameField = "";
+    let valueSearch = "";
+    for(let i = 0;i<valueToSearch.length;i++){
+        NameField = fieldNames[i];
+        valueSearch = valueToSearch[i];
+        let index = possibleEntries[i].indexOf(valueSearch);
+        if(index == -1){
+            return ["The value of "+valueToSearch+" is not one of the possible values of "+fieldNames,false]
+        }
+    }
+    return ["",true]
+}
