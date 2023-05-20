@@ -17,14 +17,21 @@ An entry consist of a date of measurement, a field for the heigh measure, for th
 after all this info is updated, the BMI is calculated and all the entries are saved in a table
 ![MainPage][3]
 
-## Security
-The bucket is configured to be [public][4]
+### Appointment page
+In this screen the user can upload new appointments made
+![Appointment][4]
 
-![BucketPolitics][5]
+An appointment consist of a proffessional, a status (appointment made or to be maken), a date, an address and a description of the meeting
+![AppointmentDetail][5]
+
+## Security
+The bucket is configured to be [public][6]
+
+![BucketPolitics][7]
 
 it means anyone can access the url. To restrict the access to the website so only a few users can use it, in the bucket it is added a politic to deny access except for some public IP addresses
 
-Sample politics taken from [How can I restrict access to my Amazon S3 bucket using specific VPC endpoints or IP addresses?][6]
+Sample politics taken from [How can I restrict access to my Amazon S3 bucket using specific VPC endpoints or IP addresses?][8]
 
 ```
 {
@@ -70,6 +77,8 @@ In this folder there are the documents used to configure the style of the screen
 [1]:../Images/LogginScreen.png
 [2]:../Images/RegisterScreen.png
 [3]:../Images/MainPage.png
-[4]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/configuring-block-public-access-bucket.html
-[5]:../Images/PublicS3Bucket.png
-[6]:https://aws.amazon.com/es/premiumsupport/knowledge-center/block-s3-traffic-vpc-ip/
+[4]:../Images/AppointmentScreen.png
+[5]:../Images/SaveAppointment.png
+[6]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/configuring-block-public-access-bucket.html
+[7]:../Images/PublicS3Bucket.png
+[8]:https://aws.amazon.com/es/premiumsupport/knowledge-center/block-s3-traffic-vpc-ip/
