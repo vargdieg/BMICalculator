@@ -1,4 +1,4 @@
-export class imcData{
+export class bmiData{
     constructor(weight,height,date,bmi,id,waist){
         this.weight = weight;
         this.height = height;
@@ -8,5 +8,3 @@ export class imcData{
         this.waist = waist;
     }
 }
-
-export {imcData}

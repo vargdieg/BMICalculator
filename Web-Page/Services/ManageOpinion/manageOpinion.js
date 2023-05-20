@@ -1,55 +1,17 @@
-const url = "";
-const ResourceUpload = "/createopinion";
-const ResourceGet = "/getopinion";
-const MethodUpload = "POST";
-const MethodGet = "GET";
-const Region = "us-east-1";
-const ApiKey = ""
+//TODO: Lo que se deberia responder es en el caso en el que cargue de manera exitosa pos cargar
+//TODO: Cuando no cargue de manera exitosa, hay debemos mostrar un modal diciendo que fue lo que esta malo o porque fallo
 
 export function uploadOpinion(opinion){
-    return new Promise(function (resolve, reject) {
-        let body = {
-            region: Region,
-            customerName: opinion.name,
-            customerOpinion: opinion.opinion,
-            messageIdentifier: opinion.identifier
-        };
-        let headers = {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'x-api-key': ApiKey
-        }
-        fetch(url+ResourceUpload,{
-            method: MethodUpload,
-            body : JSON.stringify(body),
-            headers: headers
-        }).then(response => {return response.json()}).then((data) => {
-            if(data.error){
-                reject(data.message);
-            }else{
-                resolve(data.code);
-            }
-        }).catch(()=>{
-            reject("Error encountered at the moment of submitting your opinion")
-        })
-    });
+    return new Promise((resolve,reject)=>{
+        localStorage.setItem('opinion'+opinion.identifier, JSON.stringify(opinion));
+        resolve("Save Done Successfully");
+    })
 }
 
 export function getOpinion(MessageId){
-    return new Promise(function (resolve, reject) {
-        let headers = {
-            'Access-Control-Allow-Origin': '*',
-            'x-api-key': ApiKey
-        }
-        fetch(url+ResourceGet+"?region="+Region+"&id="+MessageId,{
-            method: MethodGet,
-            headers: headers
-        }).then(response => {return response.json()}).then(data => {
-            if(data.error){
-                reject(data.message);
-            }else{
-                resolve(data.code);
-            }
-        }).catch(()=>{reject("Error Encountered at the momento of getting opinion")})
-    });
+    let opinion = localStorage.getItem('opinion'+MessageId);
+    if(opinion == null){
+        return [];
+    }
+    return JSON.parse(opinion);
 }

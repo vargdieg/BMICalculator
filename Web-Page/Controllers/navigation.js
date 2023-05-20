@@ -5,6 +5,7 @@ export function redirectHome(){
 }
 
 export function redirectRegister(){
+    console.log(window.location.href);
     window.location.href = "../register.html";
 }
 

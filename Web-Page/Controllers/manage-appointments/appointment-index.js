@@ -1,8 +1,8 @@
 import {createCard} from './create-card.js'
 import {loadUserAppointmets} from '../../Services/appointmentCard/ManageAppointments.js'
 import { addNote } from "./manage-card.js";
-
-let id = 1;
+import {showModal} from "../manage-modal/manage-commonmodal.js";
+let id = params.get("id");;
 
 DisplayAppointments();
 
@@ -24,11 +24,13 @@ export function DisplayAppointments(){
     let list = document.getElementById('appointment-list');
     list.appendChild(appointmentaddCard);
 
-    let appointmets = loadUserAppointmets(id);
-    appointmets.forEach(appointment => {
-        addNewAppointment(createCard(appointment));
+    let appointmets = loadUserAppointmets(id).then(()=>{
+        appointmets.forEach(appointment => {
+            addNewAppointment(createCard(appointment));
+        });
+    }).catch((error)=>{
+        showModal(error);
     });
-
 }
 
 function addNewAppointment(cardElement){
