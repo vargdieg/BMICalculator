@@ -2,10 +2,10 @@
 swagger: "2.0"
 info:
   description: "API used to manage the user in the BMI user table"
-  version: "2022-11-13T12:55:27Z"
+  version: "2023-05-28T20:30:55Z"
   title: "BMIUserManagement"
 host: "3c15e242i1.execute-api.us-east-1.amazonaws.com"
-basePath: "/Development"
+basePath: "/product"
 schemes:
 - "https"
 paths:
@@ -29,12 +29,20 @@ paths:
           headers:
             Access-Control-Allow-Origin:
               type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
         "400":
           description: "400 response"
           schema:
             $ref: "#/definitions/ErrorResponse"
           headers:
             Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
               type: "string"
         "500":
           description: "500 response"
@@ -43,6 +51,12 @@ paths:
           headers:
             Access-Control-Allow-Origin:
               type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+      security:
+      - api_key: []
     options:
       consumes:
       - "application/json"
@@ -80,6 +94,10 @@ paths:
           headers:
             Access-Control-Allow-Origin:
               type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
         "400":
           description: "400 response"
           schema:
@@ -87,12 +105,77 @@ paths:
           headers:
             Access-Control-Allow-Origin:
               type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
         "500":
           description: "500 response"
           schema:
             $ref: "#/definitions/ErrorResponse"
           headers:
             Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+      security:
+      - api_key: []
+    options:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+  /getuserinformation:
+    get:
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ResponseGetUserInformation"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+        "400":
+          description: "400 response"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+        "500":
+          description: "500 response"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
               type: "string"
     options:
       consumes:
@@ -111,7 +194,7 @@ paths:
               type: "string"
             Access-Control-Allow-Headers:
               type: "string"
-  /updateuser:
+  /validateloggin:
     post:
       consumes:
       - "application/json"
@@ -119,26 +202,46 @@ paths:
       - "application/json"
       parameters:
       - in: "body"
-        name: "RequestUpdateUser"
+        name: "RequestValidateLoggin"
         required: true
         schema:
-          $ref: "#/definitions/RequestUpdateUser"
+          $ref: "#/definitions/RequestValidateLoggin"
       responses:
         "200":
           description: "200 response"
           schema:
-            $ref: "#/definitions/ResponseManageUser"
+            $ref: "#/definitions/ResponseValidateLoggin"
           headers:
             Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
               type: "string"
         "400":
           description: "400 response"
           schema:
             $ref: "#/definitions/ErrorResponse"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
         "500":
           description: "500 response"
           schema:
             $ref: "#/definitions/ErrorResponse"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+            Access-Control-Allow-Methods:
+              type: "string"
+            Access-Control-Allow-Headers:
+              type: "string"
+      security:
+      - api_key: []
     options:
       consumes:
       - "application/json"
@@ -156,279 +259,59 @@ paths:
               type: "string"
             Access-Control-Allow-Headers:
               type: "string"
-  /user:
-    get:
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
-      parameters:
-      - name: "region"
-        in: "query"
-        required: true
-        type: "string"
-      responses:
-        "200":
-          description: "200 response"
-          schema:
-            $ref: "#/definitions/ResponseListUsers"
-          headers:
-            Access-Control-Allow-Origin:
-              type: "string"
-        "400":
-          description: "400 response"
-          schema:
-            $ref: "#/definitions/ErrorResponse"
-          headers:
-            Access-Control-Allow-Origin:
-              type: "string"
-        "500":
-          description: "500 response"
-          schema:
-            $ref: "#/definitions/ErrorResponse"
-          headers:
-            Access-Control-Allow-Origin:
-              type: "string"
-    options:
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
-      responses:
-        "200":
-          description: "200 response"
-          schema:
-            $ref: "#/definitions/Empty"
-          headers:
-            Access-Control-Allow-Origin:
-              type: "string"
-            Access-Control-Allow-Methods:
-              type: "string"
-            Access-Control-Allow-Headers:
-              type: "string"
-  /user/{username+}:
-    get:
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
-      parameters:
-      - name: "username"
-        in: "path"
-        required: true
-        type: "string"
-      - name: "region"
-        in: "query"
-        required: true
-        type: "string"
-      responses:
-        "200":
-          description: "200 response"
-          schema:
-            $ref: "#/definitions/ResponseValidateUser"
-          headers:
-            Access-Control-Allow-Origin:
-              type: "string"
-        "400":
-          description: "400 response"
-          schema:
-            $ref: "#/definitions/ErrorResponse"
-          headers:
-            Access-Control-Allow-Origin:
-              type: "string"
-        "500":
-          description: "500 response"
-          schema:
-            $ref: "#/definitions/ErrorResponse"
-          headers:
-            Access-Control-Allow-Origin:
-              type: "string"
-    options:
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
-      parameters:
-      - name: "username"
-        in: "path"
-        required: true
-        type: "string"
-      responses:
-        "200":
-          description: "200 response"
-          schema:
-            $ref: "#/definitions/Empty"
-          headers:
-            Access-Control-Allow-Origin:
-              type: "string"
-            Access-Control-Allow-Methods:
-              type: "string"
-            Access-Control-Allow-Headers:
-              type: "string"
-  /{id+}:
-    get:
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
-      parameters:
-      - name: "region"
-        in: "query"
-        required: true
-        type: "string"
-      - name: "id"
-        in: "path"
-        required: true
-        type: "string"
-      responses:
-        "200":
-          description: "200 response"
-          schema:
-            $ref: "#/definitions/ResponseGetUser"
-          headers:
-            Access-Control-Allow-Origin:
-              type: "string"
-        "400":
-          description: "400 response"
-          schema:
-            $ref: "#/definitions/ErrorResponse"
-        "500":
-          description: "500 response"
-          schema:
-            $ref: "#/definitions/ErrorResponse"
-    options:
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
-      parameters:
-      - name: "id"
-        in: "path"
-        required: true
-        type: "string"
-      responses:
-        "200":
-          description: "200 response"
-          schema:
-            $ref: "#/definitions/Empty"
-          headers:
-            Access-Control-Allow-Origin:
-              type: "string"
-            Access-Control-Allow-Methods:
-              type: "string"
-            Access-Control-Allow-Headers:
-              type: "string"
+securityDefinitions:
+  api_key:
+    type: "apiKey"
+    name: "x-api-key"
+    in: "header"
 definitions:
-  ResponseListUsers:
-    type: "object"
-    required:
-    - "Code"
-    - "Item"
-    properties:
-      Code:
-        type: "string"
-        description: "http status of the request"
-      Item:
-        type: "array"
-        items:
-          type: "object"
-          properties:
-            CUSTOMER_NAME:
-              type: "string"
-              description: "name of the user"
-            CUSTOMER_EMAIL:
-              type: "string"
-              description: "email of the user"
-            CUSTOMER_IDENTIFICATION:
-              type: "string"
-              description: "identifier of the user"
-    title: "ResponseListUsers"
-    description: "get all users response schema"
   ResponseManageUser:
     type: "object"
     required:
-    - "Code"
+    - "code"
+    - "message"
     properties:
-      Code:
+      code:
         type: "string"
         description: "http status code"
-    title: "ResponseManageUser"
-    description: "Response schema for create - delete and update user info"
+      name:
+        type: "string"
+        description: "this is the name of the HTTP Status code"
+      message:
+        type: "string"
+        description: "This is the message to show to the user if necessary"
+    title: "ResponseGetOpinion"
+    description: "Get opinion response schema"
   Empty:
     type: "object"
     title: "Empty Schema"
-  ResponseValidateUser:
+  ResponseGetUserInformation:
     type: "object"
     required:
-    - "CUSTOMER_IDENTIFICATION"
-    - "CUSTOMER_NAME"
-    - "CUSTOMER_PASSWORD"
+    - "code"
+    - "message"
+    - "name"
     properties:
-      CUSTOMER_NAME:
+      code:
         type: "string"
-        description: "Username"
-      CUSTOMER_PASSWORD:
+        description: "http status code"
+      name:
         type: "string"
-        description: "Password of the user"
-      CUSTOMER_IDENTIFICATION:
+        description: "this is the name of the HTTP Status code"
+      message:
         type: "string"
-        description: "Identifier of the user"
-    title: "ResponseValidateUser"
-    description: "Response Schema of loggin"
-  RequestUpdateUser:
-    type: "object"
-    required:
-    - "fieldToChange"
-    - "id"
-    - "newValue"
-    - "region"
-    properties:
-      region:
-        type: "string"
-        description: "Region where the table is stored"
-      id:
-        type: "string"
-        description: "unique identifier of the opinion"
-      fieldToChange:
-        type: "string"
-        description: "which field is going to be changed"
-        enum:
-        - "CUSTOMER_NAME"
-        - "CUSTOMER_EMAIL"
-        - "CUSTOMER_IDENTIFICATION"
-        - "CUSTOMER_PASSWORD"
-      newValue:
-        type: "string"
-        description: "New value to be stored"
-    title: "RequestUpdateUser"
-    description: "Update user request schema"
-  ResponseGetUser:
-    type: "object"
-    required:
-    - "Code"
-    - "Item"
-    properties:
-      Code:
-        type: "string"
-        description: "http code response"
-      Item:
+        description: "This is the message to show to the user if necessary"
+      data:
         type: "object"
-        description: "user data"
         properties:
-          CUSTOMER_NAME:
+          username:
             type: "string"
-            description: "user name"
-          CUSTOMER_EMAIL:
+            description: "the username of the client"
+          email:
             type: "string"
-            description: "user email"
-          CUSTOMER_IDENTIFICATION:
-            type: "string"
-            description: "user id"
-          CUSTOMER_PASSWORD:
-            type: "string"
-            description: "user current password"
-    title: "ResponseGetUser"
-    description: "Get user response schema"
+            description: "the email of the registered user"
+    title: "ResponseGetOpinion"
+    description: "Schema for retrieving the user information"
   RequestDeleteUser:
     type: "object"
     required:
@@ -452,23 +335,58 @@ definitions:
     - "customerPassword"
     - "region"
     properties:
-      region:
-        type: "string"
-        description: "Region where the table is stored"
       customerName:
         type: "string"
-        description: "Name of the registered user"
+        description: "username of the person"
       customerPassword:
         type: "string"
-        description: "password used to loggin into the application"
+        description: "Password of the user to be created"
       customerEmail:
         type: "string"
-        description: "email of the customer"
+        description: "email of the person to be created"
       customerIdentification:
         type: "string"
-        description: "unique identifier of the user"
-    title: "RequestCreateUser"
-    description: "Create user request schema"
+        description: "uuid of the user to be created"
+      region:
+        type: "string"
+        description: "region in which the table is deployed"
+    title: "ErrorResponse"
+    description: "error response schema"
+  RequestValidateLoggin:
+    type: "object"
+    required:
+    - "customerName"
+    - "customerPassword"
+    - "region"
+    properties:
+      customerName:
+        type: "string"
+        description: "username of the person"
+      customerPassword:
+        type: "string"
+        description: "Password of the user to be created"
+      region:
+        type: "string"
+        description: "region in which the table is deployed"
+    title: "ValidateLogginSchema"
+    description: "schema for validate and authenticate user"
+  ResponseValidateLoggin:
+    type: "object"
+    properties:
+      code:
+        type: "string"
+        description: "http status code"
+      name:
+        type: "string"
+        description: "this is the name of the HTTP Status code"
+      message:
+        type: "string"
+        description: "This is the message to show to the user if necessary"
+      data:
+        type: "string"
+        description: "identifier of the user"
+    title: "ResponseGetOpinion"
+    description: "Get opinion response schema"
   ErrorResponse:
     type: "object"
     required:
@@ -482,6 +400,9 @@ definitions:
       message:
         type: "string"
         description: "Description of the error"
+      user_message:
+        type: "string"
+        description: "Message error to show to the user"
       error:
         type: "object"
         description: "errorcode"
@@ -489,5 +410,8 @@ definitions:
           errorCode:
             type: "string"
             description: "http status error code"
+          TypeOfError:
+            type: "string"
+            description: "If the error is a thecnical error or an 8 layer error"
     title: "ErrorResponse"
     description: "error response schema"
