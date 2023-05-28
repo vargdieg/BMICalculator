@@ -1,54 +1,98 @@
-//TODO: Lo que se deberia responder es en el caso en el que cargue de manera exitosa pos cargar
-//TODO: Cuando no cargue de manera exitosa, hay debemos mostrar un modal diciendo que fue lo que esta malo o porque fallo
+const url = "https://g2byi602xh.execute-api.us-east-1.amazonaws.com/product";
+const ResourceSave = "/updatedata";
+const ResourceDelete = "/deletebmidata";
+const ResourceGetData = "/getbmidata";
+const MethodSave = "POST";
+const MethodDelete = "DELETE";
+const MethodGetData = "GET";
+const Region = "us-east-1";
+const ApiKey = "vxwGs0Uay68rYt0w7op5f5zUbMUubiOf1AUKyGyv"
 
 export function loadUserData(id){
-    return new Promise((resolve,reject)=>{
-        try{
-            let bmiData = localStorage.getItem('bmiData'+id);
-            if(bmiData == null){
-                resolve ([]);
+    return new Promise(function (resolve, reject) {
+        let headers = {
+            'Access-Control-Allow-Origin': '*',
+            'x-api-key': ApiKey
+        }
+        fetch(url+ResourceGetData+"?region="+Region+"&id="+id,{
+            method: MethodGetData,
+            headers: headers
+        }).then(response => {return response.json()}).then((data) => {
+            if(data.code == "200"){
+                return resolve(data.data);
+            }else{
+                if(data.error){
+                    return reject(data.user_message);
+                }else{
+                    return reject("Error proccessing the request")        
+                }
             }
-            resolve(JSON.parse(bmiData));
-        }catch{
-            reject("An error ocurred while loading the user data")
-        }
-    })
-}
-
-export function saveData(userNewData,id){
-    return new Promise(async (resolve,reject)=>{
-        try{
-            let newData = await loadUserData(id);
-            newData.push(userNewData);
-            localStorage.setItem('bmiData'+id, JSON.stringify(orderData(newData)));
-            resolve("Entry saved suscessfully");
-        }catch{
-            reject("An error ocurred while saving the data")
-        }
-    })
-}
-
-export function deleteDataEntry(userid,dataid){
-    return new Promise(async (resolve,reject)=>{
-        try{
-            let data = await loadUserData(userid);
-            const index = data.findIndex((item) => item.id === dataid);
-            if(index != -1){
-                datos.splice(index, 1);
-                localStorage.setItem('bmiData'+id, JSON.stringify(orderData(datos)));
-                resolve("Data deleted successfully");
-            }
-        }catch{
-            reject("An error ocurred while trying to delete the entry");
-        }
+        }).catch(()=>{
+            return reject("Error proccessing the request")
+        })
     });
 }
 
-function orderData(datos){
-    datos.sort(function(a,b){
-        const firstDate = moment(a.date, 'DD/MM/YYYY');
-        const secondDate = moment(b.date, 'DD/MM/YYYY');
-        return firstDate - secondDate;
-      });
-    return datos;
+export function saveData(userNewData,id){
+    return new Promise(function (resolve, reject) {
+        let body = {
+            region: Region,
+            customerIdentification: id,
+            bmiNewData: userNewData
+        };
+        let headers = {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'x-api-key': ApiKey
+        }
+        fetch(url+ResourceSave,{
+            method: MethodSave,
+            body : JSON.stringify(body),
+            headers: headers
+        }).then(response => {return response.json()}).then((data) => {
+            if(data.code == "200"){
+                return resolve(data.message);
+            }else{
+                if(data.error){
+                    return reject(data.user_message);
+                }else{
+                    return reject("Error proccessing the request")        
+                }
+            }
+        }).catch(()=>{
+            return reject("Error proccessing the request")
+        })
+    });
+}
+
+export function deleteDataEntry(userid,dataid){
+    return new Promise(function (resolve, reject) {
+        let body = {
+            region: Region,
+            customerIdentification: userid,
+            bmiDataIdentification: dataid
+        };
+        let headers = {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'x-api-key': ApiKey
+        }
+        fetch(url+ResourceDelete,{
+            method: MethodDelete,
+            body : JSON.stringify(body),
+            headers: headers
+        }).then(response => {return response.json()}).then((data) => {
+            if(data.code == "200"){
+                return resolve(data.message);
+            }else{
+                if(data.error){
+                    return reject(data.user_message);
+                }else{
+                    return reject("Error encountered at the moment of submitting your opinion")        
+                }
+            }
+        }).catch(()=>{
+            return reject("Error encountered at the moment of submitting your opinion")
+        })
+    });
 }

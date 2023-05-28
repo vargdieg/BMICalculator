@@ -1,13 +1,13 @@
-const { DynamoDBClient, CreateTableCommand } = require("@aws-sdk/client-dynamodb");
+import { DynamoDBClient, CreateTableCommand } from require("@aws-sdk/client-dynamodb");
 
 const profile = process.argv[3];
 const region = process.argv[2];
 
-CreateUserTable(profile,region).then(response => {
+CreateDataTable(profile,region).then(response => {
   console.log(response);
 });
 
-async function CreateUserTable(profilename,region){
+async function CreateDataTable(profilename,region){
   
   const client = new DynamoDBClient({ region: region ,profile: profilename});
  
@@ -28,7 +28,7 @@ async function CreateUserTable(profilename,region){
       ReadCapacityUnits: 1,
       WriteCapacityUnits: 1
     },
-    TableName: 'CUSTOMER_LIST',
+    TableName: 'CUSTOMER_DATA_LIST',
     StreamSpecification: {
       StreamEnabled: false
     }

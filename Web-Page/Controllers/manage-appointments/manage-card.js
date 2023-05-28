@@ -4,8 +4,7 @@ import { showModal,hideModal } from './manage-modal.js';
 import {appointmentCard} from '../classes/appointmentCard.js'
 import { showModalCommon } from '../manage-modal/manage-commonmodal.js';
 import {validateInputs,validateInputEnum} from "../validateInputForm/validateInputForm.js";
-import {appointmentsStatus,professionals} from "../const/appointmentsConsts.js";
-import {professionals,appointmentsStatus} from "../consts/appointmentsConsts.js"
+import {professionals,appointmentsStatus} from "../consts/appointmentsConsts.js";
 
 const params = new URLSearchParams(window.location.search);
 const userid = params.get("id");

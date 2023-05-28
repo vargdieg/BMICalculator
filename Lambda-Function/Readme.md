@@ -17,6 +17,10 @@
 | Get all users  |Function that make the request to the table and retrieve the name password and email of all the users in the table|
 | Get user credentials  |Function that make the request to the table and retrieve the name password and identifier of the user |
 
+### Create User
+
+When creating an user - first it is needed to check if the email and the username are in the table, if those elements are in another user, the user need to modify the email or the user
+
 ## Data Management
 | Name  | Description  |
 |---|---|

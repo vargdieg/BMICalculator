@@ -1,35 +1,57 @@
-const { DynamoDBClient, DescribeTableCommand} = require("@aws-sdk/client-dynamodb");
-var region = process.argv[2];
-var tableName = process.argv[3];
-let profile = process.argv[4];
+import { DynamoDBClient, CreateTableCommand } from require("@aws-sdk/client-dynamodb");
 
-DescribeTable(profile,region,tableName).then(response => {
-    console.log(response);
+const profile = process.argv[3];
+const region = process.argv[2];
+
+CreateAppointmentTable(profile,region).then(response => {
+  console.log(profile);
+  console.log(region);
+  console.log(response);
 });
 
-async function DescribeTable(profilename,region,tableName){
+async function CreateAppointmentTable(profilename,region){
+  
   const client = new DynamoDBClient({ region: region ,profile: profilename});
+ 
   var params = {
-    TableName: tableName
-   };
-
-   const command = new DescribeTableCommand(params);
-   try {
-     const response = await client.send(command);
-     let responseMessage = {
-      "TableName": response.Table.TableName,
-      "TableId": response.Table.TableArn,
-      "Status": response.Table.TableStatus,
-      "details":{
+    AttributeDefinitions: [
+      {
+        AttributeName: 'CUSTOMER_IDENTIFICATION',
+        AttributeType: 'S'
+      }
+    ],
+    KeySchema: [
+      {
+        AttributeName: 'CUSTOMER_IDENTIFICATION',
+        KeyType: 'HASH'
+      }
+    ],
+    ProvisionedThroughput: {
+      ReadCapacityUnits: 1,
+      WriteCapacityUnits: 1
+    },
+    TableName: 'CUSTOMER_APPOINTMENT_LIST',
+    StreamSpecification: {
+      StreamEnabled: false
+    }
+  };
+  
+  const command = new CreateTableCommand(params);
+  try {
+    const response = await client.send(command);
+    let responseMessage = {
+      "TableName": response.TableDescription.TableName,
+      "TableId": response.TableDescription.TableArn,
+        "details":{
           "Code": response.$metadata.httpStatusCode,
           "AmazonIdCode": response.$metadata.requestId
         }
     }
     return responseMessage;
-   }catch(error){
-     let response = handlingError(error);
-     return response;
-   }
+  }catch(error){
+    let response = handlingError(error);
+    return response;
+  }
 }
 
 function handlingError(error){

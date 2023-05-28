@@ -1,53 +1,36 @@
-const { DynamoDBClient, CreateTableCommand } = require("@aws-sdk/client-dynamodb");
+import { DynamoDBClient, DescribeTableCommand} from require("@aws-sdk/client-dynamodb");
 
 var region = process.argv[2];
-let profile = process.argv[3];
+var tableName = process.argv[3];
+let profile = process.argv[4];
 
-createOpinionTable(profile,region).then(response => {
+DescribeTable(profile,region,tableName).then(response => {
     console.log(response);
 });
 
-async function createOpinionTable(profilename,region){
+async function DescribeTable(profilename,region,tableName){
   const client = new DynamoDBClient({ region: region ,profile: profilename});
-
   var params = {
-    AttributeDefinitions: [
-      {
-        AttributeName: 'MESSAGE_IDENTIFIER',
-        AttributeType: 'S'
-      }
-    ],
-    KeySchema: [
-      {
-        AttributeName: 'MESSAGE_IDENTIFIER',
-        KeyType: 'HASH'
-      }
-    ],
-    ProvisionedThroughput: {
-      ReadCapacityUnits: 1,
-      WriteCapacityUnits: 1
-    },
-    TableName: 'CUSTOMER_OPINION_LIST',
-    StreamSpecification: {
-      StreamEnabled: false
-    }
-};
-const command = new CreateTableCommand(params);
-try {
-  const response = await client.send(command);
-  let responseMessage = {
-    "TableName": response.TableDescription.TableName,
-    "TableId": response.TableDescription.TableArn,
+    TableName: tableName
+   };
+
+   const command = new DescribeTableCommand(params);
+   try {
+     const response = await client.send(command);
+     let responseMessage = {
+      "TableName": response.Table.TableName,
+      "TableId": response.Table.TableArn,
+      "Status": response.Table.TableStatus,
       "details":{
-        "Code": response.$metadata.httpStatusCode,
-        "AmazonIdCode": response.$metadata.requestId
-      }
-  }
-  return responseMessage;
-}catch(error){
-  let response = handlingError(error);
-  return response;
-}
+          "Code": response.$metadata.httpStatusCode,
+          "AmazonIdCode": response.$metadata.requestId
+        }
+    }
+    return responseMessage;
+   }catch(error){
+     let response = handlingError(error);
+     return response;
+   }
 }
 
 function handlingError(error){

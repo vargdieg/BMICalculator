@@ -43,10 +43,11 @@ saveOpinion.addEventListener("click",()=>{
 button.addEventListener("click",() => {
     const [username,password] = readEntries();
     if(!(username == "" || password == "")){
-        validateLoggin(username,password).then((user) => {
-            saveSession(user.identifier);
-            bmi(user.identifier);
+        validateLoggin(username,password).then((identifier) => {
+            saveSession(identifier);
+            bmi(identifier);
         }).catch((error) => {
+            console.clear();
             showModalCommon(error);
         });
     }else{

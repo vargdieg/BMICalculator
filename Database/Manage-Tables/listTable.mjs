@@ -1,4 +1,4 @@
-const { DynamoDBClient, ListTablesCommand} = require("@aws-sdk/client-dynamodb");
+import { DynamoDBClient, ListTablesCommand} from "@aws-sdk/client-dynamodb";
 var region = process.argv[2];
 let profile = process.argv[3];
 

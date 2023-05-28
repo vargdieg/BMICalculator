@@ -1,92 +1,134 @@
-//TODO: Lo que se deberia responder es en el caso en el que cargue de manera exitosa pos cargar
-//TODO: Cuando no cargue de manera exitosa, hay debemos mostrar un modal diciendo que fue lo que esta malo o porque fallo
+const url = "https://3c15e242i1.execute-api.us-east-1.amazonaws.com/product";
+const ResourceCreate = "/createuser";
+const ResourceDelete = "/deleteuser";
+const ResourceValidate = "/validateloggin";
+const ResourceGetUserInformation = "/getuserinformation";
+const MethodCreate = "POST";
+const MethodDelete = "DELETE";
+const MethodValidate = "POST";
+const MethodGetUserInformation = "GET";
+const Region = "us-east-1";
+const ApiKey = "vxwGs0Uay68rYt0w7op5f5zUbMUubiOf1AUKyGyv"
 
 export function saveUser(userInfo){
-    return new Promise((resolve,reject) => {
-        try
-        {
-        localStorage.setItem('User'+userInfo.identifier, JSON.stringify(userInfo));
-        saveId(userInfo.identifier);
-        resolve("Save Done Successfully");
-        }catch{
-            reject("An error ocurred while saving the user")
+    return new Promise(function (resolve, reject) {
+        let body = {
+            region: Region,
+            customerName: userInfo.username,
+            customerPassword: userInfo.password,
+            customerEmail: userInfo.email,
+            customerIdentification: userInfo.identifier
+        };
+        let headers = {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'x-api-key': ApiKey
         }
+        fetch(url+ResourceCreate,{
+            method: MethodCreate,
+            body : JSON.stringify(body),
+            headers: headers
+        }).then(response => {return response.json()}).then((data) => {
+            if(data.code == "200"){
+                return resolve(data.message);
+            }else{
+                if(data.error){
+                    return reject(data.user_message);
+                }else{
+                    return reject("Error encountered at the moment of submitting your opinion")        
+                }
+            }
+        }).catch(()=>{
+            return reject("Error encountered at the moment of submitting your opinion")
+        })
     });
 }
 
 export function deleteUser(userid){
-    return new Promise(async (resolve,reject)=>{
-        try{
-            let index = -1;
-            localStorage.removeItem('User'+userid);
-            let ids = await loadId();
-            for(let i = 0;i<ids.length;i++){
-                if(ids[i] == userid){
-                    index = i;
-                    break;
-                }
-            }
-            if(index != -1){
-                ids.splice(index,1);
-                localStorage.setItem('UsersIds',JSON.stringify(ids));
-                resolve("User deleted");
+    return new Promise(function (resolve, reject) {
+        let body = {
+            region: Region,
+            customerIdentification: userid
+        };
+        let headers = {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'x-api-key': ApiKey
+        }
+        fetch(url+ResourceDelete,{
+            method: MethodDelete,
+            body : JSON.stringify(body),
+            headers: headers
+        }).then(response => {return response.json()}).then((data) => {
+            if(data.code == "200"){
+                return resolve(data.message);
             }else{
-                reject("The id of the user was not found");
-            }
-        }catch{
-            reject("An error ocurred while deleting the user");
-        }
-    })
-}
-
-export function getUserName(userid){
-    return new Promise((resolve,reject)=>{
-        try{
-            let User = localStorage.getItem('User'+userid);
-            if(User == null){
-                resolve([]);
-            }
-            resolve(JSON.parse(User));
-        }catch{
-            reject("An error ocurred while extracting user data")
-        }
-    })
-}
-
-export function validateLoggin(username,password){
-    return new Promise(async (resolve,reject) =>{
-        try{
-            let ids = await loadId();
-            for(let i = 0;i<ids.length;i++){
-                let user = await getUserName(ids[i]);
-                if(user.username == username && user.password == password){
-                    resolve(user);
+                if(data.error){
+                    return reject(data.user_message);
+                }else{
+                    return reject("Error encountered at the moment of submitting your opinion")        
                 }
             }
-        }catch{
-            reject("An error ocurred while validating loggin");
-        }
-    })
-}
-
-function saveId(idToSave){
-    loadId().then((Userids)=>{
-        Userids.push(idToSave);
-        localStorage.setItem('UsersIds',JSON.stringify(Userids));
-    }).catch({
+        }).catch(()=>{
+            return reject("Error encountered at the moment of submitting your opinion")
+        })
     });
 }
 
-function loadId(){
-    return new Promise((resolve,reject)=>{
-        try{
-            let Userids = localStorage.getItem('UsersIds');
-            if(Userids == null){
-                resolve([]);
-            }
-            resolve(JSON.parse(Userids));
-        }catch{
-            reject("An error ocurred while loading the ids")
+export function validateLoggin(username,password){
+    return new Promise(function (resolve, reject) {
+        let body = {
+            customerName: username,
+            customerPassword: password,
+            region: Region
+        };
+        let headers = {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'x-api-key': ApiKey
         }
-    })
+        fetch(url+ResourceValidate,{
+            method: MethodValidate,
+            body : JSON.stringify(body),
+            headers: headers
+        }).then(response => {return response.json()}).then((data) => {
+            if(data.code == "200"){
+                return resolve(data.data);
+            }else{
+                if(data.error){
+                    return reject(data.user_message);
+                }else{
+                    return reject("Error encountered at the moment of submitting your opinion")        
+                }
+            }
+        }).catch(()=>{
+            return reject("Error encountered at the moment of submitting your opinion")
+        })
+    });
+}
+
+
+export function getUserName(idUser){
+    return new Promise(function (resolve, reject) {
+        let headers = {
+            'Access-Control-Allow-Origin': '*',
+            'x-api-key': ApiKey
+        }
+        fetch(url+ResourceGetUserInformation+"?region="+Region+"&id="+idUser,{
+            method: MethodGetUserInformation,
+            headers: headers
+        }).then(response => {return response.json()}).then((data) => {
+            if(data.code == "200"){
+                return resolve(data.data);
+            }else{
+                if(data.error){
+                    return reject(data.user_message);
+                }else{
+                    return reject("Error retrieving the user information")        
+                }
+            }
+        }).catch(()=>{
+            return reject("Error retrieving the user information")
+        })
+    });
 }
