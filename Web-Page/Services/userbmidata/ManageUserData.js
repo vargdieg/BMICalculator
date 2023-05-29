@@ -1,12 +1,12 @@
-const url = "https://g2byi602xh.execute-api.us-east-1.amazonaws.com/product";
+const url = "";
 const ResourceSave = "/updatedata";
 const ResourceDelete = "/deletebmidata";
 const ResourceGetData = "/getbmidata";
 const MethodSave = "POST";
 const MethodDelete = "DELETE";
 const MethodGetData = "GET";
-const Region = "us-east-1";
-const ApiKey = "vxwGs0Uay68rYt0w7op5f5zUbMUubiOf1AUKyGyv"
+const Region = "";
+const ApiKey = ""
 
 export function loadUserData(id){
     return new Promise(function (resolve, reject) {

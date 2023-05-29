@@ -1,12 +1,12 @@
-const url = "https://92p29q1nud.execute-api.us-east-1.amazonaws.com/product";
+const url = "";
 const ResourceUpload = "/createopinion";
 const ResourceGet = "/getopinion";
 const ResourceDelete = "/deleteopinion";
 const MethodUpload = "POST";
 const MethodGet = "GET";
 const MethodDelete = "DELETE";
-const Region = "us-east-1";
-const ApiKey = "vxwGs0Uay68rYt0w7op5f5zUbMUubiOf1AUKyGyv"
+const Region = "";
+const ApiKey = ""
 
 export function uploadOpinion(opinion){
     return new Promise(function (resolve, reject) {

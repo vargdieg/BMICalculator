@@ -1,4 +1,4 @@
-const url = "https://3c15e242i1.execute-api.us-east-1.amazonaws.com/product";
+const url = "";
 const ResourceCreate = "/createuser";
 const ResourceDelete = "/deleteuser";
 const ResourceValidate = "/validateloggin";
@@ -7,8 +7,8 @@ const MethodCreate = "POST";
 const MethodDelete = "DELETE";
 const MethodValidate = "POST";
 const MethodGetUserInformation = "GET";
-const Region = "us-east-1";
-const ApiKey = "vxwGs0Uay68rYt0w7op5f5zUbMUubiOf1AUKyGyv"
+const Region = "";
+const ApiKey = ""
 
 export function saveUser(userInfo){
     return new Promise(function (resolve, reject) {

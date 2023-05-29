@@ -1,4 +1,4 @@
-const url = "https://vr92308i2a.execute-api.us-east-1.amazonaws.com/product";
+const url = "";
 const ResourceDelete = "/deleteappointment";
 const ResourceGetAppointment = "/getappointments";
 const ResourceCreateAppointment = "/putappointment";
@@ -7,8 +7,8 @@ const MethodDelete = "DELETE";
 const MethodGetAppointment = "GET";
 const MethodCreateAppointment = "POST";
 const MethodEditAppointment = "PATCH";
-const Region = "us-east-1";
-const ApiKey = "vxwGs0Uay68rYt0w7op5f5zUbMUubiOf1AUKyGyv"
+const Region = "";
+const ApiKey = ""
 
 export function loadUserAppointmets(id){
     return new Promise(function (resolve, reject) {
