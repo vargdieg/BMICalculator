@@ -26,13 +26,13 @@ function createModal(id="CreateModal"){
                     <div class="appointmentCardList__element__header">
                         <label for="professionselection">Profession:</label>
                         <select name="profession" id="professionselection" required data-inputProfession>
-                            ${professionals.map(element => createOptionValue(element))}
+                            ${professionals.sort().map(element => createOptionValue(element))}
                         </select>
                     </div>
                     <div class="appointmentCardList__element__header">
                         <label for="statusselection">Status:</label>
                         <select name="status" id="statusselection" required data-inputStatus>
-                            ${appointmentsStatus.map(element => createOptionValue(element))}
+                            ${appointmentsStatus.sort().map(element => createOptionValue(element))}
                         </select>
                     </div>
                     <div class="appointmentCardList__element__header">
