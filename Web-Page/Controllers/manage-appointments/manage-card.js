@@ -42,7 +42,7 @@ export function editNote(event,id){
                 let direction = document.querySelector('[data-inputDirection]');
                 let description = document.querySelector('[data-inputDescription]');
                 const [validate,reason] = validateInputs([profession,dateTime,status],["Profession","date-time","status"]);
-                const [validateEnum,reasonEnum] = validateInputEnum([profession,status],["Profession","status"],[professionals,appointmentsStatus]);
+                const [validateEnum,reasonEnum] = validateInputEnum([profession,status],["Profession","status"],[professionals.sort(),appointmentsStatus.sort()]);
                 if(!validate || !validateEnum){
                     if(!validate){
                         hideModal();
