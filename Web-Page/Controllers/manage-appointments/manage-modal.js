@@ -19,6 +19,7 @@ export function hideModal(){
 }
 
 function createModal(id="CreateModal"){
+    let profSorted = professionals.sort();
     return `<div id=${id} class="modal">
                 <div class="body__appointmentCardList__element modal-content">
                     <i class="fa fa-trash fa-lg" style="color:rgba(178, 6, 6, 0.771)" data-modalEsc></i>
@@ -26,13 +27,13 @@ function createModal(id="CreateModal"){
                     <div class="appointmentCardList__element__header">
                         <label for="professionselection">Profession:</label>
                         <select name="profession" id="professionselection" required data-inputProfession>
-                            ${professionals.sort().map(element => createOptionValue(element))}
+                            ${profSorted.map(element => createOptionValue(element))}
                         </select>
                     </div>
                     <div class="appointmentCardList__element__header">
                         <label for="statusselection">Status:</label>
                         <select name="status" id="statusselection" required data-inputStatus>
-                            ${appointmentsStatus.sort().map(element => createOptionValue(element))}
+                            ${appointmentsStatus.map(element => createOptionValue(element))}
                         </select>
                     </div>
                     <div class="appointmentCardList__element__header">
