@@ -74,11 +74,11 @@ In this folder there are the scripts used to make request to the different API's
 ### Styles
 In this folder there are the documents used to configure the style of the screen, font family - colors ...
 
-[1]:../Images/LogginScreen.png
-[2]:../Images/RegisterScreen.png
-[3]:../Images/MainPage.png
-[4]:../Images/AppointmentScreen.png
-[5]:../Images/SaveAppointment.png
+[1]:../Images/WebPagesScreen/LogginScreen.png
+[2]:../Images/WebPagesScreen/RegisterScreen.png
+[3]:../Images/WebPagesScreen/MainPage.png
+[4]:../Images/WebPagesScreen/AppointmentScreen.png
+[5]:../Images/WebPagesScreen/SaveAppointment.png
 [6]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/configuring-block-public-access-bucket.html
-[7]:../Images/PublicS3Bucket.png
+[7]:../Images/GeneralOverview/PublicS3Bucket.png
 [8]:https://aws.amazon.com/es/premiumsupport/knowledge-center/block-s3-traffic-vpc-ip/

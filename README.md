@@ -30,5 +30,5 @@ AWS compute service used to either manage services in AWS or to make computing p
 
 AWS NoSQL database used to store data. In this project this service is used to save users data.
 
-[1]:Images/BMIChestCalculatorPreview.png
-[2]:Images/FunctionalDiagram.png
+[1]:Images/WebPagesScreen/BMIChestCalculatorPreview.png
+[2]:Images/GeneralOverview/FunctionalDiagram.png
