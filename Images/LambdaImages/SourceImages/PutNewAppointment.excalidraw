@@ -1,0 +1,329 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "https://excalidraw.com",
+  "elements": [
+    {
+      "id": "clUOjcQXxUDyr7x2AuKtU",
+      "type": "rectangle",
+      "x": 464,
+      "y": 320,
+      "width": 232,
+      "height": 44,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "hachure",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 3
+      },
+      "seed": 1905268291,
+      "version": 92,
+      "versionNonce": 83945453,
+      "isDeleted": false,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "0A6SudvzKhZPNVEJcuciS"
+        },
+        {
+          "id": "O0mWFzMioBQaGEgYGsyjH",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1687721323467,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "0A6SudvzKhZPNVEJcuciS",
+      "type": "text",
+      "x": 477.4700927734375,
+      "y": 329.5,
+      "width": 205.059814453125,
+      "height": 25,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "hachure",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 1184494509,
+      "version": 183,
+      "versionNonce": 222748429,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1687722756259,
+      "link": null,
+      "locked": false,
+      "text": "Put New Appointment",
+      "fontSize": 20,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "baseline": 18,
+      "containerId": "clUOjcQXxUDyr7x2AuKtU",
+      "originalText": "Put New Appointment",
+      "lineHeight": 1.25,
+      "isFrameName": false
+    },
+    {
+      "id": "mzA2dZ-BLhMVFzsAgac4d",
+      "type": "rectangle",
+      "x": 780,
+      "y": 287,
+      "width": 230,
+      "height": 110,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "hachure",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 3
+      },
+      "seed": 1461282115,
+      "version": 95,
+      "versionNonce": 1277020717,
+      "isDeleted": false,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "XxOGfrBDNjxfIkQFcPPDo"
+        },
+        {
+          "id": "n0TdaxDqSU4gYxxDSSO7v",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1687722774230,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "XxOGfrBDNjxfIkQFcPPDo",
+      "type": "text",
+      "x": 792.6500930786133,
+      "y": 292,
+      "width": 204.69981384277344,
+      "height": 100,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "hachure",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 713359171,
+      "version": 560,
+      "versionNonce": 1263848365,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1687722775882,
+      "link": null,
+      "locked": false,
+      "text": "Create a new \nAppointment for the \nuser in the \nappointment table",
+      "fontSize": 20,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "baseline": 93,
+      "containerId": "mzA2dZ-BLhMVFzsAgac4d",
+      "originalText": "Create a new Appointment for the user in the appointment table",
+      "lineHeight": 1.25,
+      "isFrameName": false
+    },
+    {
+      "id": "57zdM0wycYf-hT7LMBQF6",
+      "type": "rectangle",
+      "x": 1067,
+      "y": 309,
+      "width": 240,
+      "height": 54,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "hachure",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 3
+      },
+      "seed": 1834523139,
+      "version": 46,
+      "versionNonce": 1060913411,
+      "isDeleted": false,
+      "boundElements": [
+        {
+          "type": "text",
+          "id": "YaE2SBLPGlWkLs3qYacwb"
+        }
+      ],
+      "updated": 1687721312122,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "YaE2SBLPGlWkLs3qYacwb",
+      "type": "text",
+      "x": 1099.9100799560547,
+      "y": 323.5,
+      "width": 174.17984008789062,
+      "height": 25,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "hachure",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 1113380429,
+      "version": 44,
+      "versionNonce": 895158317,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1687722136434,
+      "link": null,
+      "locked": false,
+      "text": "Appointment table",
+      "fontSize": 20,
+      "fontFamily": 1,
+      "textAlign": "center",
+      "verticalAlign": "middle",
+      "baseline": 18,
+      "containerId": "57zdM0wycYf-hT7LMBQF6",
+      "originalText": "Appointment table",
+      "lineHeight": 1.25,
+      "isFrameName": false
+    },
+    {
+      "id": "O0mWFzMioBQaGEgYGsyjH",
+      "type": "arrow",
+      "x": 697,
+      "y": 341.0113636363636,
+      "width": 87,
+      "height": 0.988636363636374,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "hachure",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 2
+      },
+      "seed": 142946243,
+      "version": 37,
+      "versionNonce": 272425443,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1687722628796,
+      "link": null,
+      "locked": false,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          87,
+          0.988636363636374
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "clUOjcQXxUDyr7x2AuKtU",
+        "focus": -0.09941520467836257,
+        "gap": 1
+      },
+      "endBinding": null,
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    },
+    {
+      "id": "n0TdaxDqSU4gYxxDSSO7v",
+      "type": "arrow",
+      "x": 1011,
+      "y": 339.33894945490584,
+      "width": 57,
+      "height": 0.33894945490584405,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "hachure",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": {
+        "type": 2
+      },
+      "seed": 903307853,
+      "version": 37,
+      "versionNonce": 1694697901,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1687722138238,
+      "link": null,
+      "locked": false,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          57,
+          -0.33894945490584405
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "mzA2dZ-BLhMVFzsAgac4d",
+        "focus": -0.03540090771558244,
+        "gap": 1
+      },
+      "endBinding": null,
+      "startArrowhead": null,
+      "endArrowhead": "arrow"
+    }
+  ],
+  "appState": {
+    "gridSize": null,
+    "viewBackgroundColor": "#ffffff"
+  },
+  "files": {}
+}
