@@ -1,0 +1,15 @@
+{
+  "name": "lambdalayer",
+  "version": "1.0.0",
+  "description": "this folder is going to create the dependencies of the bmi project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.337.0",
+    "moment": "^2.29.4"
+  }
+}

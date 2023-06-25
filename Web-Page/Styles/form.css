@@ -20,11 +20,6 @@
     text-align: center;
 }
 
-.form__list__element__input:invalid{
-    border-color: red;
-    border-style: solid;
-}
-
 .form__button{
     width: 30%;
     margin: 1rem 0rem 0rem 0rem;
@@ -38,4 +33,10 @@
     color: red;
     text-decoration: underline;
     cursor: pointer;
+}
+
+.bad-input{
+    color: red;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
 }
