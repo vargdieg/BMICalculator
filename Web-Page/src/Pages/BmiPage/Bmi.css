@@ -1,0 +1,64 @@
+.welcomeBanner{
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.body{
+    padding-top: 3rem;
+    padding-bottom: 1rem;
+    background: linear-gradient(to right, rgb(134, 239, 172), rgb(59, 130, 246), rgb(147, 51, 234));
+}
+
+.body__addentry{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    font-family: 'Fira Sans', sans-serif;
+    text-align: center;
+}
+
+.body__addentry__button{
+    background-color: blue;
+    color: white;
+    padding: 0rem 1rem 0rem 1rem;
+}
+
+.body__addentry__button:hover{
+    cursor: pointer;
+}
+
+.body__addentry__element__input{
+    border-style: solid;
+    border-color: black;
+    border-radius: 4px;
+    border-width: 0.1rem;
+}
+
+.body__table{
+    padding-top: 5rem;
+    display: flex;
+    font-family: 'Fira Sans', sans-serif;
+    justify-content: space-evenly;
+    text-align: center;
+    background: linear-gradient(to right, rgb(134, 239, 172), rgb(59, 130, 246), rgb(147, 51, 234));
+}
+
+.body__table_content{
+    border: 1px solid black;
+}
+
+.body__table_content__headers{
+    border: 1px solid black;
+    width: 8rem;
+    text-align: center;
+}
+
+.body__table_content__elements{
+    border: 1px solid black;
+    text-align: center;
+}
+.body__table_content__erase:hover{
+    cursor: pointer;
+    color: red;
+}

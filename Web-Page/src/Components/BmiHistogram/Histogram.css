@@ -1,0 +1,7 @@
+.body__histogram{
+    padding-top: 5rem;
+    display: flex;
+    justify-content: space-around;
+    height: 30%;
+    background: linear-gradient(to right, rgb(134, 239, 172), rgb(59, 130, 246), rgb(147, 51, 234));
+}

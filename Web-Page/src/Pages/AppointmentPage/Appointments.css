@@ -1,0 +1,33 @@
+.body{
+    display: flex;
+    padding: 30px 20px;
+    height: 70%;
+    background: linear-gradient(to right, rgb(134, 239, 172), rgb(59, 130, 246), rgb(147, 51, 234));
+}
+
+.body__appointmentCardList{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+}
+
+.body__appointmentaddButton__add{
+    width: 190px;
+    height: 244px;
+    background-color: rgba(78, 1, 1, 0.456);
+    margin-right: 24px;
+    margin-bottom: 10px;
+    border : dotted red 3px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 10px 5px 5px black;
+}
+
+.body__appointmentaddButton__add:hover{
+    cursor: pointer;
+}
+
+.body__appointmentaddButton__add>i{
+    padding-top: 50%;
+    color: black
+}
