@@ -35,18 +35,21 @@ The possible values for profession are :
 - cirugia Maxilofacial
 - general
 - medicina Interna
-- "otorrino
+- otorrino
 - odontologia
 - neurologia
 - medicina Deportiva
 - nutricion
 - endocrinologia
-- optometria"
+- optometria
 
 ## Folders
 
+### Components
+In this folder are saved the files of each subcomponent of the page that it is render an used in the web page
+
 ### Controllers
-In this folder there are the scripts that uses each screen
+In this folder are saved some classes, const and functions used in the differents components
 
 ### Images
 In this folder there are the images used to show on the screen as a background or in the screens
@@ -54,11 +57,11 @@ In this folder there are the images used to show on the screen as a background o
 ### Service
 In this folder there are the scripts used to make request to the different API's
 
-### Styles
-In this folder there are the documents used to configure the style of the screen, font family - colors ...
+### Pages
+In this folder it is stored the files that render the different web pages that the user sees
 
-[1]:./Images/LogginScreen.png
-[2]:./Images/RegisterScreen.png
-[3]:./Images/MainPage.png
-[4]:./Images/AppointmentScreen.png
-[5]:./Images/SaveAppointment.png
+[1]:../Images/WebPagesScreen/LogginScreen.png
+[2]:../Images/WebPagesScreen/RegisterScreen.png
+[3]:../Images/WebPagesScreen/MainPage.png
+[4]:../Images/WebPagesScreen/AppointmentScreen.png
+[5]:../Images/WebPagesScreen/SaveAppointment.png

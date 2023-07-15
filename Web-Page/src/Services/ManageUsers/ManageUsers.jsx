@@ -99,11 +99,11 @@ export function validateLoggin(username,password){
                 if(data.error){
                     return reject(data.user_message);
                 }else{
-                    return reject("Error encountered at the moment of submitting your opinion")        
+                    return reject("Error al momento de validar el inicio de sesion");
                 }
             }
         }).catch(()=>{
-            return reject("Error encountered at the moment of submitting your opinion")
+            return reject("Error al momento de validar el inicio de sesion");
         })
     });
 }
@@ -125,11 +125,11 @@ export function getUserName(idUser){
                 if(data.error){
                     return reject(data.user_message);
                 }else{
-                    return reject("Error retrieving the user information")        
+                    return reject("Error obteniendo la informacion del usuario")        
                 }
             }
         }).catch(()=>{
-            return reject("Error retrieving the user information")
+            return reject("Error obteniendo la informacion del usuario")
         })
     });
 }

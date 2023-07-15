@@ -44,18 +44,27 @@ export default function Register(){
         if(initialForm.username[1] && initialForm.password[1] && 
             initialForm.passwordVerifier[1] && initialForm.email[1]){
             if(initialForm.password[0] === initialForm.passwordVerifier[0]){
-                saveUser(new user(initialForm.username[0],initialForm.password[0],initialForm.email[0]));
                 setInitialForm({
                     username: ["",false],
                     password: ["",false],
                     passwordVerifier: ["",false],
                     email: ["",false]
                 });
-                setShowModal((previous) =>{ return {
-                    ...previous,
-                    state: true,
-                    message: 'Usuario Guardado Con Exito'
-                }
+                saveUser(new user(initialForm.username[0],initialForm.password[0],initialForm.email[0])).then(()=>{
+                    setShowModal((previous) =>{ return {
+                        ...previous,
+                        state: true,
+                        message: 'Usuario Guardado Con Exito'
+                    }
+                    });
+                }).catch((error)=>{
+                    console.log(error);
+                    setShowModal((previous) =>{ return {
+                        ...previous,
+                        state: true,
+                        message: error
+                    }
+                    });
                 });
             }else{
                 setShowModal((previous) =>{ return {
