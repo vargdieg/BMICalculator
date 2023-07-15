@@ -19,51 +19,37 @@ after all this info is updated, the BMI is calculated and all the entries are sa
 
 ### Appointment page
 In this screen the user can upload new appointments made
+
 ![Appointment][4]
 
 An appointment consist of a proffessional, a status (appointment made or to be maken), a date, an address and a description of the meeting
+
 ![AppointmentDetail][5]
 
-## Security
-The bucket is configured to be [public][6]
+The possible values for status are:
+- agendada
+- no agendada
 
-![BucketPolitics][7]
-
-it means anyone can access the url. To restrict the access to the website so only a few users can use it, in the bucket it is added a politic to deny access except for some public IP addresses
-
-Sample politics taken from [How can I restrict access to my Amazon S3 bucket using specific VPC endpoints or IP addresses?][8]
-
-```
-{
-  "Id": "VpcSourceIp",
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "VpcSourceIp",
-      "Action": "s3:*",
-      "Effect": "Deny",
-      "Resource": [
-        "arn:aws:s3:::DOC-EXAMPLE-BUCKET",
-        "arn:aws:s3:::DOC-EXAMPLE-BUCKET/*"
-      ],
-      "Condition": {
-        "NotIpAddress": {
-          "aws:VpcSourceIp": [
-            "10.1.1.1/32",
-            "172.1.1.1/32"
-          ]
-        }
-      },
-      "Principal": "*"
-    }
-  ]
-}
-```
+The possible values for profession are : 
+- alergologia
+- cirugia Maxilofacial
+- general
+- medicina Interna
+- otorrino
+- odontologia
+- neurologia
+- medicina Deportiva
+- nutricion
+- endocrinologia
+- optometria
 
 ## Folders
 
+### Components
+In this folder are saved the files of each subcomponent of the page that it is render an used in the web page
+
 ### Controllers
-In this folder there are the scripts that uses each screen
+In this folder are saved some classes, const and functions used in the differents components
 
 ### Images
 In this folder there are the images used to show on the screen as a background or in the screens
@@ -71,14 +57,11 @@ In this folder there are the images used to show on the screen as a background o
 ### Service
 In this folder there are the scripts used to make request to the different API's
 
-### Styles
-In this folder there are the documents used to configure the style of the screen, font family - colors ...
+### Pages
+In this folder it is stored the files that render the different web pages that the user sees
 
 [1]:../Images/WebPagesScreen/LogginScreen.png
 [2]:../Images/WebPagesScreen/RegisterScreen.png
 [3]:../Images/WebPagesScreen/MainPage.png
 [4]:../Images/WebPagesScreen/AppointmentScreen.png
 [5]:../Images/WebPagesScreen/SaveAppointment.png
-[6]:https://docs.aws.amazon.com/AmazonS3/latest/userguide/configuring-block-public-access-bucket.html
-[7]:../Images/GeneralOverview/PublicS3Bucket.png
-[8]:https://aws.amazon.com/es/premiumsupport/knowledge-center/block-s3-traffic-vpc-ip/

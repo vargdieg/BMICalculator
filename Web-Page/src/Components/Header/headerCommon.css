@@ -1,0 +1,30 @@
+.header{
+    height: 100px;
+    background: linear-gradient(to right, rgb(134, 239, 172), rgb(59, 130, 246), rgb(147, 51, 234));
+}
+.header__title{ 
+    align-items:center;
+    display: flex;
+    font-size: 2.5rem;
+    justify-content: space-around;
+    list-style-type: none;
+    padding-top: 10px;
+}
+
+.header__title__redirectpages{
+    margin-left: 2rem;
+    display: flex;
+    align-items:center;
+    list-style-type: none;
+}
+
+.header__title__redirectpages__element{
+    margin-right: 2rem;
+    font-size: 1rem;
+}
+
+.header__title__redirectpages__element:hover{
+    cursor: pointer;
+    text-decoration: underline;
+    color: red;
+}
