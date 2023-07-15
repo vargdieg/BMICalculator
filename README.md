@@ -2,7 +2,7 @@
 
 ## Description
 
-The purpose of this project is to registry and keep track on some medical information of an user.
+The purpose of this project is to registry and keep track on some medical information of an user
 
 ![WebPageOverview][1]
 
