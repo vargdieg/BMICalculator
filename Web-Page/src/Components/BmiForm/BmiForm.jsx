@@ -4,6 +4,7 @@ import {bmiData as bmiClass} from '../../Controllers/Classes/bmiData.jsx';
 import {saveData} from '../../Services/userbmidata/ManageUserData.jsx';
 import Modal from '../../Components/Modal/Modal.jsx';
 import { createPortal } from 'react-dom';
+import moment from 'moment';
 
 export default function Form({loadBmiData}){
     const params = new URLSearchParams(window.location.search);
@@ -34,8 +35,9 @@ export default function Form({loadBmiData}){
         let bmi = bmiCalculator(initialForm.height[0],initialForm.weight[0]);
         if(initialForm.weight[1] && initialForm.height[1] &&
             initialForm.dateOfEntry[1] && initialForm.waist[1]){
+                let dateSave = moment(initialForm.dateOfEntry[0],'YYYY-MM-DD').format('DD/MM/YYYY');
                 saveData(new bmiClass(initialForm.weight[0],initialForm.height[0],
-                    initialForm.dateOfEntry[0],bmi.toFixed(2),initialForm.waist[0]),idUser).then((data)=>{
+                    dateSave,bmi.toFixed(2),initialForm.waist[0]),idUser).then((data)=>{
                         if(data.error){
                             setShowModal((previous) =>{ return {
                                 ...previous,

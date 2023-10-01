@@ -8,7 +8,7 @@ import {saveUserAppointments,editAppointment} from '../../Services/appointmentCa
 import appointmentCard from '../../Controllers/Classes/appointmentCard.jsx';
 import ContentEditable from 'react-contenteditable';
 
-export default function CardModal({modalState,setModalState,state,handleQuit,id,userid,save}){
+export default function CardModal({modalState,setModalState,state,handleQuit,id,userid,idCardState,save}){
 
     const validFormEntries = (event)=>{
         return ManageCardModalForm(event,setModalState);
@@ -47,6 +47,7 @@ export default function CardModal({modalState,setModalState,state,handleQuit,id,
                     saveUserAppointments(new appointmentCard(modalState.profession[0],date,time,modalState.status[0],modalState.direction[0],modalState.description[0]),userid).then(()=>{
                         quitModal();
                         save();
+                        idCardState('');
                     }).catch(()=>{
                         setShowModal((previous) =>{ return {
                             ...previous,
@@ -62,6 +63,7 @@ export default function CardModal({modalState,setModalState,state,handleQuit,id,
                     editAppointment(userid,appointment).then(()=>{
                         quitModal();
                         save();
+                        idCardState('');
                     }).catch(()=>{
                         setShowModal((previous) =>{ return {
                             ...previous,
