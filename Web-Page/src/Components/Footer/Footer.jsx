@@ -5,11 +5,13 @@ import {opinion} from '../../Controllers/Classes/opinion.jsx';
 import {uploadOpinion} from '../../Services/ManageOpinion/manageOpinion.jsx';
 
 export default function Footer(){
+    const newDate = new Date()
+    
     const [message,setMessage] = useState({
         user: ["",false],
         usermessage: ["",false],
     })
-    
+
     const validMessageEntries = (event)=>{
         return ManageMessageInput(event,setMessage);
     }
@@ -37,7 +39,7 @@ export default function Footer(){
                 </section>
                 <section className="footer__message">
                     <p className="footer__message__text">Gracias por confiar en nosotros para poder guardar su informacion</p>
-                    <p className="footer_message__copyright">©Copyright 2022</p>
+                    <p className="footer_message__copyright">©Copyright {2000+newDate.getYear()-100}</p>
                 </section>
             </footer>)
 }
