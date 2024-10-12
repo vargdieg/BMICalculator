@@ -1,3 +1,4 @@
+require('dotenv').config();
 const url = process.env.DATA_URL;
 const ResourceSave = "/updatedata";
 const ResourceDelete = "/deletebmidata";

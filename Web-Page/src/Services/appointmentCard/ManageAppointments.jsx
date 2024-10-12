@@ -1,3 +1,4 @@
+require('dotenv').config();
 const url = process.env.APPOINTMENTS_URL;
 const ResourceDelete = "/deleteappointment";
 const ResourceGetAppointment = "/getappointments";
