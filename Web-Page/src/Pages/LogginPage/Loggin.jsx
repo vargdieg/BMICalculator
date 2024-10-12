@@ -11,6 +11,7 @@ import {redirectHome,redirectRegister} from '../../Controllers/navigation.jsx';
 import {getCurrentSession,saveSession} from '../../Services/ManageUsers/manageSessions.jsx';
 
 export default function Loggin(){
+    //Esto es un comentario
     let titleInput = ["Pagina IMC","Ingresar"];
     let redirect = [{text:"Home",function:redirectHome},{text:"Registro",function:redirectRegister}];
 
