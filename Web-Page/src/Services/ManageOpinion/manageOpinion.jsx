@@ -1,4 +1,4 @@
-const url = "";
+const url = process.env.OPINION_URL;
 const ResourceUpload = "/createopinion";
 const ResourceGet = "/getopinion";
 const ResourceDelete = "/deleteopinion";
@@ -6,7 +6,7 @@ const MethodUpload = "POST";
 const MethodGet = "GET";
 const MethodDelete = "DELETE";
 const Region = "us-east-1";
-const ApiKey = "";
+const ApiKey = process.env.APIKEY;
 
 export function uploadOpinion(opinion){
     return new Promise(function (resolve, reject) {

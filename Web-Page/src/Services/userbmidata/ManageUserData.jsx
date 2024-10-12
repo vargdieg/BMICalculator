@@ -1,4 +1,4 @@
-const url = "";
+const url = process.env.DATA_URL;
 const ResourceSave = "/updatedata";
 const ResourceDelete = "/deletebmidata";
 const ResourceGetData = "/getbmidata";
@@ -6,7 +6,7 @@ const MethodSave = "POST";
 const MethodDelete = "DELETE";
 const MethodGetData = "GET";
 const Region = "us-east-1";
-const ApiKey = "";
+const ApiKey = process.env.APIKEY;
 
 export function loadUserData(id){
     return new Promise(function (resolve, reject) {

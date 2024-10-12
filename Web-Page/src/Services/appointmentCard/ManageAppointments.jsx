@@ -1,4 +1,4 @@
-const url = "";
+const url = process.env.APPOINTMENTS_URL;
 const ResourceDelete = "/deleteappointment";
 const ResourceGetAppointment = "/getappointments";
 const ResourceCreateAppointment = "/putappointment";
@@ -8,7 +8,7 @@ const MethodGetAppointment = "GET";
 const MethodCreateAppointment = "POST";
 const MethodEditAppointment = "PATCH";
 const Region = "us-east-1";
-const ApiKey = "";
+const ApiKey = process.env.APIKEY;
 
 export function loadUserAppointmets(id){
     return new Promise(function (resolve, reject) {
