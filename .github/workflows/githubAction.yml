@@ -32,6 +32,11 @@ jobs:
           OPINION_URL=${{ secrets.OPINION_URL }}>>.env
           APIKEY=${{ secrets.APIKEY }}>>.env
 
+      - name: "echo ls"
+        working-directory: ./Web-Page/
+        run: |
+          echo ls
+
 
       - name: "Prepare build of artifacts"
         working-directory: ./Web-Page/
