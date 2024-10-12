@@ -12,12 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-region: ${{ secrets.REGION }}
-          aws-access-key-id: ${{ secrets.KEY_ID }}
-          aws-secret-access-key: ${{ secrets.KEY_ID }}
-          
       - name: "Download npm"
         run: |
           sudo apt update
@@ -37,7 +31,26 @@ jobs:
           OPINION_URL: ${{ secrets.OPINION_URL }}
           APIKEY: ${{ secrets.APIKEY }}
         run: npm run build
-
+      
+      - name: "Set credentials for AWS"
+        env:
+          KEY_ID: ${{ secrets.KEY_ID }}
+          KEY_PASS: ${{ secrets.KEY_PASS }}
+          REGION: ${{ secrets.REGION }}
+        run: |
+          export AWS_ACCESS_KEY_ID=$KEY_ID
+          export AWS_SECRET_ACCESS_KEY=$KEY_PASS
+          export AWS_DEFAULT_REGION=$REGION
+      
+      - name: "List files"
+        working-directory: ./Web-Page
+        env:
+          BUCKET_NAME: "webbmistoreapplication"
+          FOLDER_PATH: "/"
+        run: |
+          aws s3 ls s3://$BUCKET_NAME$FOLDER_PATH
+          echo aws s3 ls s3://$BUCKET_NAME$FOLDER_PATH
+      
       - name: "Upload the artifacts to AWS S3"
         working-directory: ./Web-Page
         env:
