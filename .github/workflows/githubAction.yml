@@ -15,7 +15,7 @@ jobs:
           sudo apt install npm
       
       - name: "Prepare build of artifacts"
-        working-directory: ./Web-Page
+        working-directory: Web-Page
         env:
           DATA_URL: ${{ secrets.DATA_URL }}
           APPOINTMENTS_URL: ${{ secrets.APPOINTMENTS_URL }}
@@ -35,7 +35,7 @@ jobs:
           export AWS_DEFAULT_REGION=$REGION
 
       - name: "Upload the artifacts to AWS S3"
-        working-directory: ./Web-Page/build/*
+        working-directory: Web-Page/build/
         env:
           BUCKET_NAME: "webbmistoreapplication"
           FOLDER_PATH: "/"
