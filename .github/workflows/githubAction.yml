@@ -41,6 +41,9 @@ jobs:
           export AWS_ACCESS_KEY_ID=$KEY_ID
           export AWS_SECRET_ACCESS_KEY=$KEY_PASS
           export AWS_DEFAULT_REGION=$REGION
+          echo "$AWS_ACCESS_KEY_ID"
+          echo "$AWS_SECRET_ACCESS_KEY"
+          echo "$AWS_DEFAULT_REGION"
       
       - name: "List files"
         working-directory: ./Web-Page
