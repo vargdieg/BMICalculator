@@ -2,6 +2,8 @@ import React from 'react';
 import './AppointmentCard.css';
 
 export default function AppointmentCard({id,profession,date,time,status,direction,description,deleteAppointment,editAppointment}){
+    //Esto es un comentario
+
     return (<li className='body__appointmentCardList__element' id={id} key={id}>
         <div className='body__appointmentCardList__element_innerCard'>
             <div className='body__appointmentCardList__element__front'>
