@@ -44,8 +44,8 @@ jobs:
           BUCKET_NAME: "webbmistoreapplication"
           FOLDER_PATH: "/"
         run: |
-          aws s3 ls s3://webbmistoreapplication/
-          echo aws s3 ls s3://webbmistoreapplication/
+          aws s3 ls s3://$BUCKET_NAME$FOLDER_PATH
+          echo aws s3 ls s3://$BUCKET_NAME$FOLDER_PATH
       
       - name: "Upload the artifacts to AWS S3"
         working-directory: ./Web-Page
@@ -53,4 +53,4 @@ jobs:
           BUCKET_NAME: "webbmistoreapplication"
           FOLDER_PATH: "/"
         run: |
-          aws s3 cp /build/ s3://webbmistoreapplication/ --recursive
+          aws s3 cp ./build/ s3://$BUCKET_NAME$FOLDER_PATH --recursive
