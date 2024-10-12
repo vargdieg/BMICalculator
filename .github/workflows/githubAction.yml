@@ -33,14 +33,10 @@ jobs:
         run: npm run build
       
       - name: "Set credentials for AWS"
-        env:
-          KEY_ID: ${{ secrets.KEY_ID }}
-          KEY_PASS: ${{ secrets.KEY_PASS }}
-          REGION: ${{ secrets.REGION }}
         run: |
-          export AWS_ACCESS_KEY_ID=$KEY_ID
-          export AWS_SECRET_ACCESS_KEY=$KEY_PASS
-          export AWS_DEFAULT_REGION=$REGION
+          aws configure set aws_access_key_id ${{ secrets.KEY_ID }}
+          aws configure set aws_secret_access_key ${{ secrets.KEY_PASS }}
+          aws configure set region ${{ secrets.REGION }}
       
       - name: "List files"
         working-directory: ./Web-Page
