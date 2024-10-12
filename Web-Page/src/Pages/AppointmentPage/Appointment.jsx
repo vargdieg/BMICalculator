@@ -14,6 +14,8 @@ import ModalOption from '../../Components/ModalAcceptCancel/ModalOption';
 
 export default function Appointment(){
 
+    //This is a comment
+
     const Session = getCurrentSession();
     if(Session === null){
         window.location.href = "/";
