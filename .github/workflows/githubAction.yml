@@ -41,19 +41,11 @@ jobs:
           export AWS_ACCESS_KEY_ID=$KEY_ID
           export AWS_SECRET_ACCESS_KEY=$KEY_PASS
           export AWS_DEFAULT_REGION=$REGION
-
-      - name: "Upload the artifacts to AWS S3"
-        working-directory: ./Web-Page/build/
-        env:
-          BUCKET_NAME: "webbmistoreapplication"
-          FOLDER_PATH: "/"
-        run: |
-          echo aws s3 ls s3://$BUCKET_NAME$FOLDER_PATH
       
       - name: "Upload the artifacts to AWS S3"
-        working-directory: ./Web-Page/build/
+        working-directory: ./Web-Page
         env:
           BUCKET_NAME: "webbmistoreapplication"
           FOLDER_PATH: "/"
         run: |
-          aws s3 cp ./ s3://$BUCKET_NAME$FOLDER_PATH --recursive
+          aws s3 cp /build/ s3://$BUCKET_NAME$FOLDER_PATH --recursive
