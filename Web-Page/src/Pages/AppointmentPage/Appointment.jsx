@@ -86,6 +86,7 @@ export default function Appointment(){
     const deleteAppointment = (id)=>{
         deleteappointment(idUser,id).then(()=>{
             changeAppointment();
+            stateCardId('');
         }).catch((error)=>{
             console.log(id);
             console.log(error);
@@ -114,7 +115,7 @@ export default function Appointment(){
         <Header titleText={titleNames} redirectText={redirect}/>
         <AppointmentList data={appointmentData} handleAddButton={handleAddButton}
         deleteAppointment={deleteAppointment} editAppointment={editAppoitnment}/>
-        <CardModal save={changeAppointment} state={modalCard} modalState={modalState} setModalState={setModalState} userid={idUser} id={cardId} handleQuit={handleQuitModal}/>
+        <CardModal save={changeAppointment} state={modalCard} modalState={modalState} setModalState={setModalState} userid={idUser} id={cardId} idCardState={stateCardId} handleQuit={handleQuitModal}/>
         <ModalOption message={'Eliminar el usuario'} description={'Esta seguro que quiere eliminar el usuario'}
         state={modalOption} accept={'Eliminar'} cancel={'Cancelar'} handleAccept={()=>{delUser()}} handleCancel={()=>{setModalOption(false)}}/>
         {createPortal(<Modal messageModal={showModal.message} state={showModal.state} handleModal={()=>{setShowModal({state: false,message: ''})}}/>,document.getElementById('modal'))}

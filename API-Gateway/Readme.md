@@ -76,7 +76,7 @@ For request of the get opinion resource, the id and the region need to be includ
     }
 ```
 
-### BMI user management
+### User management
 This API expose the capabilities of creating deleting changing the user information such as the name password and email
 
 | Name  | Resource  | Description  |
