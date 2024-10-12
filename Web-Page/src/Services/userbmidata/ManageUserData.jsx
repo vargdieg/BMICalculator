@@ -1,5 +1,4 @@
-require('dotenv').config();
-const url = process.env.DATA_URL;
+const url = process.env.REACT_APP_DATA_URL;
 const ResourceSave = "/updatedata";
 const ResourceDelete = "/deletebmidata";
 const ResourceGetData = "/getbmidata";
@@ -7,7 +6,7 @@ const MethodSave = "POST";
 const MethodDelete = "DELETE";
 const MethodGetData = "GET";
 const Region = "us-east-1";
-const ApiKey = process.env.APIKEY;
+const ApiKey = process.env.REACT_APP_APIKEY;
 
 export function loadUserData(id){
     return new Promise(function (resolve, reject) {

@@ -1,5 +1,4 @@
-require('dotenv').config();
-const url = process.env.APPOINTMENTS_URL;
+const url = process.env.REACT_APP_APPOINTMENTS_URL;
 const ResourceDelete = "/deleteappointment";
 const ResourceGetAppointment = "/getappointments";
 const ResourceCreateAppointment = "/putappointment";
@@ -9,7 +8,7 @@ const MethodGetAppointment = "GET";
 const MethodCreateAppointment = "POST";
 const MethodEditAppointment = "PATCH";
 const Region = "us-east-1";
-const ApiKey = process.env.APIKEY;
+const ApiKey = process.env.REACT_APP_APIKEY;
 
 export function loadUserAppointmets(id){
     return new Promise(function (resolve, reject) {

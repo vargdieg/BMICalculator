@@ -1,5 +1,4 @@
-require('dotenv').config();
-const url = process.env.USER_URL;
+const url = process.env.REACT_APP_USER_URL;
 const ResourceCreate = "/createuser";
 const ResourceDelete = "/deleteuser";
 const ResourceValidate = "/validateloggin";
@@ -9,7 +8,7 @@ const MethodDelete = "DELETE";
 const MethodValidate = "POST";
 const MethodGetUserInformation = "GET";
 const Region = "us-east-1";
-const ApiKey = process.env.APIKEY;
+const ApiKey = process.env.REACT_APP_APIKEY;
 
 export function saveUser(userInfo){
     return new Promise(function (resolve, reject) {
