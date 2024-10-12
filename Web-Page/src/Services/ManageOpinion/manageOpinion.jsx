@@ -8,8 +8,6 @@ const MethodDelete = "DELETE";
 const Region = "us-east-1";
 const ApiKey = process.env.REACT_APP_APIKEY;
 
-console.log(process.env.OPINION_URL,process.env.APIKEY);
-
 export function uploadOpinion(opinion){
     return new Promise(function (resolve, reject) {
         let body = {
