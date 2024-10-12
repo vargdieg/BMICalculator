@@ -1,3 +1,4 @@
+require('dotenv').config();
 const url = process.env.USER_URL;
 const ResourceCreate = "/createuser";
 const ResourceDelete = "/deleteuser";

@@ -1,3 +1,4 @@
+require('dotenv').config();
 const url = process.env.OPINION_URL;
 const ResourceUpload = "/createopinion";
 const ResourceGet = "/getopinion";
