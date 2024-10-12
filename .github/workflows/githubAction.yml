@@ -20,7 +20,7 @@ jobs:
       - name: "Download dependencies"
         working-directory: ./Web-Page/
         run: |
-          npm run install
+          npm install
 
       - name: "Prepare build of artifacts"
         working-directory: ./Web-Page/
