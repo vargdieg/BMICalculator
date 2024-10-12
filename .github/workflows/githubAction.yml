@@ -10,11 +10,16 @@ jobs:
     if: github.ref == 'refs/heads/master'
     steps:
       - uses: actions/checkout@v3
+      
       - name: "Download npm"
         run: |
           sudo apt update
           sudo apt install npm
       
+      - name: "Download dependencies"
+        run: |
+          npm run install
+
       - name: "Prepare build of artifacts"
         working-directory: ./Web-Page/
         env:
