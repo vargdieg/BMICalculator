@@ -15,6 +15,7 @@ import ModalOption from '../../Components/ModalAcceptCancel/ModalOption';
 export default function Appointment(){
 
     //Se deja esta linea como comentarios
+    //Se deja esta segunda linea de comentarios
 
     const Session = getCurrentSession();
     if(Session === null){
