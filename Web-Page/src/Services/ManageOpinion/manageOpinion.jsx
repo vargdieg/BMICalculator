@@ -1,5 +1,4 @@
-require('dotenv').config();
-const url = process.env.OPINION_URL;
+const url = process.env.REACT_APP_OPINION_URL;
 const ResourceUpload = "/createopinion";
 const ResourceGet = "/getopinion";
 const ResourceDelete = "/deleteopinion";
@@ -7,7 +6,9 @@ const MethodUpload = "POST";
 const MethodGet = "GET";
 const MethodDelete = "DELETE";
 const Region = "us-east-1";
-const ApiKey = process.env.APIKEY;
+const ApiKey = process.env.REACT_APP_APIKEY;
+
+console.log(process.env.OPINION_URL,process.env.APIKEY);
 
 export function uploadOpinion(opinion){
     return new Promise(function (resolve, reject) {

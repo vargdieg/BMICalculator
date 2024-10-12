@@ -26,11 +26,11 @@ jobs:
         working-directory: ./Web-Page/
         run: |
           touch .env
-          echo DATA_URL=${{ secrets.DATA_URL }}>>.env
-          APPOINTMENTS_URL=${{ secrets.APPOINTMENTS_URL }}>>.env
-          USER_URL=${{ secrets.USER_URL }}>>.env
-          OPINION_URL=${{ secrets.OPINION_URL }}>>.env
-          APIKEY=${{ secrets.APIKEY }}>>.env
+          echo REACT_APP_DATA_URL=${{ secrets.DATA_URL }}>>.env
+          echo REACT_APP_APPOINTMENTS_URL=${{ secrets.APPOINTMENTS_URL }}>>.env
+          echo REACT_APP_USER_URL=${{ secrets.USER_URL }}>>.env
+          echo REACT_APP_OPINION_URL=${{ secrets.OPINION_URL }}>>.env
+          echo REACT_APP_APIKEY=${{ secrets.APIKEY }}>>.env
 
       - name: "echo ls"
         working-directory: ./Web-Page/
