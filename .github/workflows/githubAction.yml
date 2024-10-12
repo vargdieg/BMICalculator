@@ -15,15 +15,14 @@ jobs:
           sudo apt install npm
       
       - name: "Prepare build of artifacts"
+        working-directory: ./Web-Page
         env:
           DATA_URL: ${{ secrets.DATA_URL }}
           APPOINTMENTS_URL: ${{ secrets.APPOINTMENTS_URL }}
           USER_URL: ${{ secrets.USER_URL }}
           OPINION_URL: ${{ secrets.OPINION_URL }}
           APIKEY: ${{ secrets.APIKEY }}
-        run: |
-          cd ./Web-Page/
-          npm run build
+        run: npm run build
       
       - name: "Set credentials for AWS"
         env:
@@ -36,8 +35,9 @@ jobs:
           export AWS_DEFAULT_REGION=$REGION
 
       - name: "Upload the artifacts to AWS S3"
+        working-directory: ./Web-Page/build/*
         env:
           BUCKET_NAME: "webbmistoreapplication"
           FOLDER_PATH: "/"
         run: |
-          aws s3 cp ./Web-Page/build/* s3://$BUCKET_NAME$FOLDER_PATH
+          aws s3 cp ./ s3://$BUCKET_NAME$FOLDER_PATH --recursive
