@@ -85,15 +85,15 @@ export default function Bmi(){
     },[dataChange,idUser])
 
     return (<React.Fragment>
-        <Header titleText={titleNames} redirectText={redirect}/>
-        <div className="body">
-            <Form loadBmiData={loadBmiData}/>
-        </div>
-        <BmiTable data={bmiData} deleteEntry={loadBmiData}/>
         {createPortal(<Modal messageModal={showModal.message} state={showModal.state} handleModal={()=>{setShowModal({state: false,message: ''})}}/>,document.getElementById('modal'))}
         <ModalOption message={'Eliminar el usuario'} description={'Esta seguro que quiere eliminar el usuario'}
         state={modalOption} accept={'Eliminar'} cancel={'Cancelar'} handleAccept={()=>{delUser()}} handleCancel={()=>{setModalOption(false)}}/>
-        <Histogram data={bmiData} />
+        <Header titleText={titleNames} redirectText={redirect}/>
+        <div className="body">
+            <Form loadBmiData={loadBmiData}/>
+            <BmiTable data={bmiData} deleteEntry={loadBmiData}/>
+            <Histogram data={bmiData} />
+        </div>
         <Footer />
     </React.Fragment>)
 }
