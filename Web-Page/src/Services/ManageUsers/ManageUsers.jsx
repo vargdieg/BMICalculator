@@ -61,7 +61,6 @@ export function deleteUser(userid){
             headers: headers
         }).then(response => {return response.json()}).then((data) => {
             if(data.code === "200"){
-                console.log(data);
                 return resolve(data.message);
             }else{
                 if(data.error){
@@ -118,7 +117,8 @@ export function getUserName(idUser){
         fetch(url+ResourceGetUserInformation+"?region="+Region+"&id="+idUser,{
             method: MethodGetUserInformation,
             headers: headers
-        }).then(response => {return response.json()}).then((data) => {
+        }).then(response => {
+            return response.json()}).then((data) => {
             if(data.code === "200"){
                 return resolve(data.data);
             }else{
