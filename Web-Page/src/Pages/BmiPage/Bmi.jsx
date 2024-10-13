@@ -89,7 +89,7 @@ export default function Bmi(){
         <ModalOption message={'Eliminar el usuario'} description={'Esta seguro que quiere eliminar el usuario'}
         state={modalOption} accept={'Eliminar'} cancel={'Cancelar'} handleAccept={()=>{delUser()}} handleCancel={()=>{setModalOption(false)}}/>
         <Header titleText={titleNames} redirectText={redirect}/>
-        <div className="body">
+        <div className='bmi_page_body'>
             <Form loadBmiData={loadBmiData}/>
             <BmiTable data={bmiData} deleteEntry={loadBmiData}/>
             <Histogram data={bmiData} />

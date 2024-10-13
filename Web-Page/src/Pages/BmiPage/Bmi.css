@@ -4,6 +4,12 @@
     text-align: center;
 }
 
+.bmi_page_body{
+    padding-top: 3rem;
+    padding-bottom: 1rem;
+    background: linear-gradient(to right, rgb(134, 239, 172), rgb(59, 130, 246), rgb(147, 51, 234));
+}
+
 .body{
     padding-top: 3rem;
     padding-bottom: 1rem;
