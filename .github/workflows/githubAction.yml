@@ -5,13 +5,20 @@ on:
     branches:
       - master
     paths:
-      - Web-Page/**
+      - 'Web-Page/**'
+      - '!Web-Page/README.md'
 
 jobs:
   publishPage:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.KEY_ID }}
+          aws-secret-access-key: ${{ secrets.KEY_PASS }}
+          aws-region: ${{ secrets.REGION }}
+
       - name: "Download npm"
         run: |
           sudo apt update
@@ -32,21 +39,9 @@ jobs:
           echo REACT_APP_OPINION_URL=${{ secrets.OPINION_URL }}>>.env
           echo REACT_APP_APIKEY=${{ secrets.APIKEY }}>>.env
 
-      - name: "echo ls"
-        working-directory: ./Web-Page/
-        run: |
-          echo ls
-
-
       - name: "Prepare build of artifacts"
         working-directory: ./Web-Page/
         run: npm run build
-      
-      - name: "Set credentials for AWS"
-        run: |
-          aws configure set aws_access_key_id ${{ secrets.KEY_ID }}
-          aws configure set aws_secret_access_key ${{ secrets.KEY_PASS }}
-          aws configure set region ${{ secrets.REGION }}
       
       - name: "Upload the artifacts to AWS S3"
         working-directory: ./Web-Page
@@ -55,3 +50,8 @@ jobs:
           FOLDER_PATH: "/"
         run: |
           aws s3 cp ./build/ s3://$BUCKET_NAME$FOLDER_PATH --recursive
+
+      - name: "Create an invalidation for cloudfront"
+        working-directory: ./Web-Page
+        run: |
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.DISTRIBUTION_ID }} --paths "/*"
