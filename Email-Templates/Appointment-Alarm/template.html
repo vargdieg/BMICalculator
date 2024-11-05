@@ -1,0 +1,17 @@
+<h1>
+    Hola buen muchacho
+</h1>
+<h2>
+    A continuacion todas las citas medicas por venir
+</h2>
+<ul>
+    {{#each listAppointments}}
+    <li>
+        <br>Profesión: {{profession}}
+        <br>Fecha: {{date}} Hora: {{time}}
+        <br>Dirección: {{direction}}
+        <br>Descripción: {{description}}
+        <br>
+    </li>
+    {{/each}}
+</ul>
