@@ -1,0 +1,8 @@
+Hola buen muchacho \n
+A continuacion todas las citas medicas por venir \n
+    {{#each listAppointments}}
+        - Profesión: {{profession}} \n
+        - Fecha: {{date}} Hora: {{time}} \n
+        - Dirección: {{direction}} \n
+        - Descripción: {{description}} \n
+    {{/each}}
