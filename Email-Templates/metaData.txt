@@ -1,1 +1,1 @@
-Medical_Appointment_Reserved Citas Medicas proximas ./Appointment-Alarm/template.html ./Appointment-Alarm/templatetext.txt
+Medical_Appointment_Reserved Citas Medicas proximas Appointment-Alarm/template.html Appointment-Alarm/templatetext.txt
