@@ -1,8 +1,8 @@
-input = "metaData.txt"
+input="metaData.txt"
 while read templateName subjectName templateFileNameHTML templateFileNameTEXT
   do
-    htmlValue = `cat $templateFileNameHTML`
-    textValue = `cat $templateFileNameTEXT`
+    htmlValue = `cat pwd$templateFileNameHTML`
+    textValue = `cat pwd$templateFileNameTEXT`
     json = "{
       \"Template\": {
       \"TemplateName\": \"$templateName\",
