@@ -6,7 +6,7 @@ const client = new SESClient({});
 
 try{
     const __dirname = new URL('.', import.meta.url).pathname;
-    const filePath = path.resolve(__dirname, '../metaData.txt');
+    const filePath = path.resolve(__dirname, '../metaData.json');
     const data = fs.readFileSync(filePath,'utf8');
     const jsonData = JSON.parse(data);
     jsonData.forEach(async (data)=>{
