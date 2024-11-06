@@ -33,16 +33,14 @@ jobs:
 
               json=$(printf '{
                 "Template": {
-                "TemplateName": "%s",
-                "SubjectPart": "%s",
-                "TextPart": "%s",
-                "HtmlPart": "%s"
-                            }
-                }' "$templateName" "$subjectnameValue" "$textValue" "$htmlValue")
-
+                  "TemplateName": "%s",
+                  "SubjectPart": "%s",
+                  "TextPart": "%s",
+                  "HtmlPart": "%s"
+                }
+              ' "$templateName" "$subjectName" "$textValue" "$htmlValue")
 
               echo $json > deployConfiguration.json
-              echo $json
               aws ses create-template --cli-input-json deployConfiguration.json >> $GITHUB_OUTPUT
           done < "$input"
       
