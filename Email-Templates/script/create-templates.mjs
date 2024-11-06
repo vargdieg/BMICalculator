@@ -1,7 +1,9 @@
 import { CreateTemplateCommand,SESClient } from "@aws-sdk/client-ses";
 import fs from 'fs';
 try{
-    const data = fs.readFileSync('../metaData.txt','utf8');
+    console.log(__dirname);
+    const filePath = path.resolve(__dirname, '../metaData.txt');
+    const data = fs.readFileSync(filePath,'utf8');
     const lines = data.split(/[\n\r]+/g);
     console.log(lines);
     const client = new SESClient();
