@@ -24,17 +24,22 @@ jobs:
           input="metaData.txt"
           while read templateName subjectName templateFileNameHTML templateFileNameTEXT
             do
-              htmlValue=$(cat "$directory$templateFileNameHTML")
-              textValue=$(cat "$directory$templateFileNameTEXT")
+              htmlValue=$(cat "$templateFileNameHTML")
+              textValue=$(cat "$templateFileNameTEXT")
               subjectnameValue= $(echo $subjectName | tr "_" " ")
-              json = "{
-                \"Template\": {
-                \"TemplateName\": \"$templateName\",
-                \"SubjectPart\": \"$subjectnameValue\",
-                \"TextPart\": \"$textValue\",
-                \"HtmlPart\": \"$htmlValue\"
-                              }
-                      }"
+
+              htmlValue=$(echo "$htmlValue" | sed -e 's/\\/\\\\/g' -e 's/"/\\"/g' -e ':a;N;$!ba;s/\n/\\n/g')
+
+              json=$(printf '{
+                "Template": {
+                "TemplateName": "%s",
+                "SubjectPart": "%s",
+                "TextPart": "%s",
+                "HtmlPart": "%s"
+                            }
+                }' "$templateName" "$subjectnameValue" "$textValue" "$htmlValue")
+
+
               echo $json > deployConfiguration.json
               aws ses create-template --cli-input-json deployConfiguration.json 
           done < "$input"
