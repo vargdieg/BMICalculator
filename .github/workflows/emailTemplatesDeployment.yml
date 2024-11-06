@@ -24,8 +24,8 @@ jobs:
           input="metaData.txt"
           while read templateName subjectName templateFileNameHTML templateFileNameTEXT
             do
-              htmlValue= $(<${templateFileNameHTML})
-              textValue= $(<${templateFileNameTEXT})
+              htmlValue= (<${templateFileNameHTML})
+              textValue= (<${templateFileNameTEXT})
               subjectnameValue= $(echo $subjectName | tr "_" " ")
               json = "{
                 \"Template\": {
