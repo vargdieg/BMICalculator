@@ -1,5 +1,6 @@
 import { CreateTemplateCommand,SESClient } from "@aws-sdk/client-ses";
 import fs from 'fs';
+import path from 'path';
 try{
     console.log(__dirname);
     const filePath = path.resolve(__dirname, '../metaData.txt');
