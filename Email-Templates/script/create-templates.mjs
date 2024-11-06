@@ -8,9 +8,12 @@ try{
     const __dirname = new URL('.', import.meta.url).pathname;
     const filePath = path.resolve(__dirname, '../metaData.txt');
     const data = fs.readFileSync(filePath,'utf8');
-    const lines = data.split(/[\n\r]+/g);
-    lines.forEach(async (line)=>{
-        const [TemplateName,emailSubject,filePathHtml,filePathText] = line.split(/[\s]+/g);
+    const jsonData = JSON.parse(data);
+    jsonData.forEach(async (data)=>{
+        const TemplateName = data.TemplateName;
+        const SubjectPart = data.Subject;
+        const filePathHtml = data.htmlFilePath;
+        const filePathText = data.textFilePath;
         const textPath = path.resolve(__dirname, `../${filePathText}`);
         const htmlPath = path.resolve(__dirname, `../${filePathHtml}`);
         const TextPart = fs.readFileSync(textPath,'utf8');
@@ -18,7 +21,7 @@ try{
         const templateJson = {
             Template:{
                 TemplateName,
-                SubjectPart: emailSubject.replaceAll('_',' '),
+                SubjectPart,
                 TextPart,
                 HtmlPart
             }
