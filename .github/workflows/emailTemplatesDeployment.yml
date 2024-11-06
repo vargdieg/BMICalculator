@@ -41,7 +41,8 @@ jobs:
               ' "$templateName" "$subjectName" "$textValue" "$htmlValue")
 
               echo $json > deployConfiguration.json
-              aws ses create-template --cli-input-json deployConfiguration.json >> $GITHUB_OUTPUT
+              echo cat deployConfiguration.json
+              aws ses create-template --cli-input-json deployConfiguration.json
           done < "$input"
       
       - name: "output message"
