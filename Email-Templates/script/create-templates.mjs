@@ -10,11 +10,13 @@ try{
     const client = new SESClient();
     lines.forEach(async (line)=>{
         const [templateName,emailSubject,filePathHtml,filePathText] = line.split(/[\s]+/g);
+        const textPath = path.resolve(__dirname, `../${filePathText}`);
+        const htmlPath = path.resolve(__dirname, `../${filePathHtml}`);
         const templateJson = {
             templateName,
             SubjectPart: emailSubject.replace('_',' '),
-            TextPart: `${fs.readFileSync(`../${filePathText}`,'utf8')}`,
-            HtmlPart: `${fs.readFileSync(`../${filePathHtml}`,'utf8')}`
+            TextPart: `${fs.readFileSync(textPath,'utf8')}`,
+            HtmlPart: `${fs.readFileSync(htmlPath,'utf8')}`
         }
         const command = new CreateTemplateCommand(templateJson);
         const response = await client.send(command);
