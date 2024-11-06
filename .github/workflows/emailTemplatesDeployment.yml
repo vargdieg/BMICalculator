@@ -21,4 +21,21 @@ jobs:
       - name: "create templates on AWS"
         working-directory: ./Email-Templates/
         run: |
-          sh uploadTemplates.sh
+          input="metaData.txt"
+          while read templateName subjectName templateFileNameHTML templateFileNameTEXT
+            do
+              directory=`pwd`
+              htmlValue= `cat pwd${templateFileNameHTML}`
+              textValue= `cat pwd${templateFileNameTEXT}`
+              subjectnameValue= $(echo $subjectName | tr "_" " ")
+              json = "{
+                \"Template\": {
+                \"TemplateName\": \"$templateName\",
+                \"SubjectPart\": \"$subjectnameValue\",
+                \"TextPart\": \"$textValue\",
+                \"HtmlPart\": \"$htmlValue\"
+                              }
+                      }"
+              echo $json > deployConfiguration.json
+              aws ses create-template --cli-input-json deployConfiguration.json 
+          done < "$input"
