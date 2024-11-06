@@ -43,7 +43,7 @@ async function templateExists(name){
           };
           const command = new GetTemplateCommand(input);
           const response = await client.send(command);
-          console.log(response);
+          console.log(response.Template.TemplateName);
           return true;
     }catch(error){
         if(error instanceof TemplateDoesNotExistException){
