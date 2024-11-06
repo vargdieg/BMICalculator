@@ -7,6 +7,8 @@ on:
     paths:
       - 'Email-Templates/**'
       - '!Email-Templates/README.md'
+      - '!Email-Templates/metaData.txt'
+      - '!Email-Templates/script/**'
 jobs:
   publish_template:
     runs-on: ubuntu-latest
@@ -17,35 +19,18 @@ jobs:
           aws-access-key-id: ${{ secrets.KEY_ID }}
           aws-secret-access-key: ${{ secrets.KEY_PASS }}
           aws-region: ${{ secrets.REGION }}
-      
-      - name: "create templates on AWS"
+
+      - name: "Download npm"
+        run: |
+          sudo apt update
+          sudo apt install npm
+
+      - name: "download dependencies"
+        working-directory: ./Email-Templates/script/
+        run: |
+          npm install
+
+      - name: "run script that creates the templates"
         working-directory: ./Email-Templates/
-        id: upload_template
         run: |
-          input="metaData.txt"
-          while read templateName subjectName templateFileNameHTML templateFileNameTEXT
-            do
-              htmlValue=$(cat "$templateFileNameHTML")
-              textValue=$(cat "$templateFileNameTEXT")
-              subjectnameValue=$(echo "$subjectName" | tr "_" " ")
-
-              htmlValue=$(echo "$htmlValue" | sed -e 's/\\/\\\\/g' -e 's/"/\\"/g' -e ':a;N;$!ba;s/\n/\\n/g')
-              textValue=$(echo "$textValue" | sed -e 's/\\/\\\\/g' -e 's/"/\\"/g' -e ':a;N;$!ba;s/\n/\\n/g')
-
-              json=$(printf '{
-                "Template": {
-                  "TemplateName": "%s",
-                  "SubjectPart": "%s",
-                  "TextPart": "%s",
-                  "HtmlPart": "%s"
-                }
-              }' "$templateName" "$subjectName" "$textValue" "$htmlValue")
-
-              echo $json > deployConfiguration.json
-              echo $(cat deployConfiguration.json)
-              aws ses create-template --cli-input-json deployConfiguration.json
-          done < "$input"
-      
-      - name: "output message"
-        run: |
-          echo steps.upload_template.outputs
+          node ./script/create-templates.mjs
