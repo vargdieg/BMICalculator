@@ -12,7 +12,7 @@ try{
     lines.forEach(async (line)=>{
         const [TemplateName,emailSubject,filePathHtml,filePathText] = line.split(/[\s]+/g);
         if(templateExists(TemplateName)){
-            throw new Error(`El template con el nombre ${TemplateName} ya existe`)
+            console.log(`El template con el nombre ${TemplateName} ya existe`)
         }else{
             const textPath = path.resolve(__dirname, `../${filePathText}`);
             const htmlPath = path.resolve(__dirname, `../${filePathHtml}`);
