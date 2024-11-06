@@ -6,21 +6,20 @@ try{
     const filePath = path.resolve(__dirname, '../metaData.txt');
     const data = fs.readFileSync(filePath,'utf8');
     const lines = data.split(/[\n\r]+/g);
-    console.log(lines);
     const client = new SESClient();
     lines.forEach(async (line)=>{
-        const [templateName,emailSubject,filePathHtml,filePathText] = line.split(/[\s]+/g);
+        const [TemplateName,emailSubject,filePathHtml,filePathText] = line.split(/[\s]+/g);
         const textPath = path.resolve(__dirname, `../${filePathText}`);
         const htmlPath = path.resolve(__dirname, `../${filePathHtml}`);
         const TextPart = fs.readFileSync(textPath,'utf8');
         const HtmlPart = fs.readFileSync(htmlPath,'utf8');
-        console.log(TextPart);
-        console.log(HtmlPart);
         const templateJson = {
-            templateName,
-            SubjectPart: emailSubject.replace('_',' '),
-            TextPart,
-            HtmlPart
+            Template:{
+                TemplateName,
+                SubjectPart: emailSubject.replaceAll('_',' '),
+                TextPart,
+                HtmlPart
+            }
         }
         const command = new CreateTemplateCommand(templateJson);
         const response = await client.send(command);
