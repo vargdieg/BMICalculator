@@ -27,7 +27,7 @@ jobs:
             do
               htmlValue=$(cat "$templateFileNameHTML")
               textValue=$(cat "$templateFileNameTEXT")
-              subjectnameValue= $(echo $subjectName | tr "_" " ")
+              subjectnameValue= $(echo "$subjectName" | tr "_" " ")
 
               htmlValue=$(echo "$htmlValue" | sed -e 's/\\/\\\\/g' -e 's/"/\\"/g' -e ':a;N;$!ba;s/\n/\\n/g')
 
