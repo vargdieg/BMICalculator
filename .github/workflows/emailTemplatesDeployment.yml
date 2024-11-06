@@ -20,6 +20,7 @@ jobs:
       
       - name: "create templates on AWS"
         working-directory: ./Email-Templates/
+        id: upload_template
         run: |
           input="metaData.txt"
           while read templateName subjectName templateFileNameHTML templateFileNameTEXT
@@ -41,5 +42,9 @@ jobs:
 
 
               echo $json > deployConfiguration.json
-              aws ses create-template --cli-input-json deployConfiguration.json 
+              aws ses create-template --cli-input-json deployConfiguration.json >> $GITHUB_OUTPUT
           done < "$input"
+      
+      - name: "output message"
+        run: |
+          echo steps.upload_template.outputs
