@@ -30,6 +30,7 @@ jobs:
               subjectnameValue=$(echo "$subjectName" | tr "_" " ")
 
               htmlValue=$(echo "$htmlValue" | sed -e 's/\\/\\\\/g' -e 's/"/\\"/g' -e ':a;N;$!ba;s/\n/\\n/g')
+              textValue=$(echo "$textValue" | sed -e 's/\\/\\\\/g' -e 's/"/\\"/g' -e ':a;N;$!ba;s/\n/\\n/g')
 
               json=$(printf '{
                 "Template": {
