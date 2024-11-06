@@ -24,9 +24,8 @@ jobs:
           input="metaData.txt"
           while read templateName subjectName templateFileNameHTML templateFileNameTEXT
             do
-              directory=`pwd`
-              htmlValue= `cat ${directory}${templateFileNameHTML}`
-              textValue= `cat ${directory}${templateFileNameTEXT}`
+              htmlValue= `cat ${templateFileNameHTML}`
+              textValue= `cat ${templateFileNameTEXT}`
               subjectnameValue= $(echo $subjectName | tr "_" " ")
               json = "{
                 \"Template\": {
