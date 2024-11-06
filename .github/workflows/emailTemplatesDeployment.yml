@@ -41,7 +41,7 @@ jobs:
               ' "$templateName" "$subjectName" "$textValue" "$htmlValue")
 
               echo $json > deployConfiguration.json
-              echo cat deployConfiguration.json
+              echo $(cat deployConfiguration.json)
               aws ses create-template --cli-input-json deployConfiguration.json
           done < "$input"
       
