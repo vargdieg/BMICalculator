@@ -36,6 +36,11 @@ jobs:
           echo HTML_FILE_PATH=Appointment-Alarm/template.html>>.env
           echo TEXT_FILE_PATH=Appointment-Alarm/templatetext.txt>>.env
 
+      - name: "Output Node Version"
+        working-directory: ./Email-Templates/script/
+        run: |
+          node --version
+
       - name: "run script that creates the templates"
         working-directory: ./Email-Templates/script/
         run: |
