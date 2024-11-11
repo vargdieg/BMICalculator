@@ -10,18 +10,17 @@ jobs:
   publish_template:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
       - uses: actions/checkout@v3
       - uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.KEY_ID }}
           aws-secret-access-key: ${{ secrets.KEY_PASS }}
           aws-region: ${{ secrets.REGION }}
-
-      - name: "Download npm"
-        run: |
-          sudo apt update
-          sudo apt install npm
-
+          
       - name: "download dependencies"
         working-directory: ./Email-Templates/script/
         run: |
