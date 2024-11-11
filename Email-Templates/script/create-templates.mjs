@@ -1,7 +1,6 @@
 import { CreateTemplateCommand,GetTemplateCommand,UpdateTemplateCommand,SESClient,TemplateDoesNotExistException } from "@aws-sdk/client-ses";
 import fs from 'fs';
 import path from 'path';
-import 'dotenv/config';
 
 const client = new SESClient({});
 
