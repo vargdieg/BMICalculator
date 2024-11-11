@@ -31,10 +31,10 @@ jobs:
         working-directory: ./Email-Templates/script/
         run: |
           touch .env
-          echo TemplateName=Medical_Appointment_Reserved>>.env
-          echo Subject=Citas Medicas Proximas>>.env
-          echo htmlFilePath=Appointment-Alarm/template.html>>.env
-          echo textFilePath=Appointment-Alarm/templatetext.txt>>.env
+          echo TEMPLATE_NAME=Medical_Appointment_Reserved>>.env
+          echo SUBJECT=Citas Medicas Proximas>>.env
+          echo HTML_FILE_PATH=Appointment-Alarm/template.html>>.env
+          echo TEXT_FILE_PATH=Appointment-Alarm/templatetext.txt>>.env
 
       - name: "run script that creates the templates"
         working-directory: ./Email-Templates/script/
