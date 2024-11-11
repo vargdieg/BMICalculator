@@ -13,7 +13,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache-dependency-path: 'Email-Templates/script/'
+          cache-dependency-path: 'Email-Templates/script/package-lock.json'
           cache: npm
       - uses: actions/checkout@v3
       - uses: aws-actions/configure-aws-credentials@v4
