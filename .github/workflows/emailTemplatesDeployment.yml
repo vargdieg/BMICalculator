@@ -39,4 +39,4 @@ jobs:
       - name: "run script that creates the templates"
         working-directory: ./Email-Templates/script/
         run: |
-          node --env-file=.env create-templates.mjs
+          node --env-file=.env ./create-templates.mjs
