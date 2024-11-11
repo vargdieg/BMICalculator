@@ -1,8 +1,0 @@
-[
-    {
-        "TemplateName":"Medical_Appointment_Reserved",
-        "Subject":"Citas Medicas Proximas",
-        "htmlFilePath":"Appointment-Alarm/template.html",
-        "textFilePath": "Appointment-Alarm/templatetext.txt"
-    }
-]

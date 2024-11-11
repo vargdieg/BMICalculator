@@ -5,9 +5,7 @@ on:
     branches:
       - master
     paths:
-      - 'Email-Templates/**'
-      - '!Email-Templates/README.md'
-      - '!Email-Templates/metaData.txt'
+      - 'Email-Templates/Appointment-Alarm/**'
 jobs:
   publish_template:
     runs-on: ubuntu-latest
@@ -29,7 +27,16 @@ jobs:
         run: |
           npm install
 
-      - name: "run script that creates the templates"
-        working-directory: ./Email-Templates/
+      - name: "Create dotenv file"
+        working-directory: ./Email-Templates/script/
         run: |
-          node ./script/create-templates.mjs
+          touch .env
+          echo TemplateName=Medical_Appointment_Reserved>>.env
+          echo Subject=Citas Medicas Proximas>>.env
+          echo htmlFilePath=Appointment-Alarm/template.html>>.env
+          echo textFilePath=Appointment-Alarm/templatetext.txt>>.env
+
+      - name: "run script that creates the templates"
+        working-directory: ./Email-Templates/script/
+        run: |
+          node --env-file=.env create-templates.mjs
