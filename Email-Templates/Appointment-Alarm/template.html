@@ -1,17 +1,16 @@
 <h1>
-    Hola buen muchacho
+    Hola {{userName}}
 </h1>
 <h2>
     A continuacion todas las citas medicas por venir
 </h2>
-<ul style="list-style-type: none;">
+<ul style="list-style-type: none; border-radius: 15px; border-color: black; border-style: solid; padding-left: 0px; padding-bottom: 20px; display: flex; flex-direction: column; background-color: rgb(129, 165, 231);">
     {{#each listAppointments}}
-    <li>
-        <br>Profesión: {{profession}}
-        <br>Fecha: {{date}} Hora: {{time}}
-        <br>Dirección: {{direction}}
-        <br>Descripción: {{description}}
-        <br>
+    <li style="text-align: center;width: 50%; margin: auto; border-radius: 10px; background-color: chocolate; margin-top: 20px; padding: 10px;">
+        <p style="margin-bottom: 5px; margin-top: 5px;"><strong>Profesión:</strong>{{profession}}</p>
+        <p style="margin-top: 0px; margin-bottom: 5px;"><strong>Fecha:</strong> {{date}} <strong>Hora:</strong> {{time}}</p>
+        <p style="margin-top: 0px; margin-bottom: 5px;"><strong>Dirección:</strong> {{direction}}</p>
+        <p style="word-break: break-all; margin-top: 0px; margin-bottom: 5px;">{{description}}</p>
     </li>
     {{/each}}
 </ul>
